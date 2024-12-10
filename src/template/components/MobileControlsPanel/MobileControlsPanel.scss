@@ -1,9 +1,12 @@
+@use "../../../styles/media";
+@use "../../../styles/variables";
+
 .mobile-controls-panel {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: $mobile-control;
+  z-index: variables.$mobile-control;
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -52,7 +55,7 @@
       height: 100%;
     }
 
-    @include tablet-xl {
+    @include media.tablet-xl {
       width: 40px;
       height: 40px;
     }
@@ -69,18 +72,18 @@
       height: 100%;
     }
 
-    @include tablet-xl {
+    @include media.tablet-xl {
       width: 32px;
       height: 32px;
     }
   }
 
-  @include tablet {
+  @include media.tablet {
     padding: 0 26px;
     font-size: 15px;
   }
 
-  @include desktop {
+  @include media.desktop {
     display: none;
   }
 }

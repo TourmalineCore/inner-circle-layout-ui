@@ -1,7 +1,9 @@
+@use "../../../../../../../styles/variables";
+
 .sidebar-tooltip {
   position: absolute;
   left: calc(100% + 8px);
-  z-index: $sidebar-tooltip;
+  z-index: variables.$sidebar-tooltip;
   display: flex;
   align-items: center;
   border-radius: 10px;

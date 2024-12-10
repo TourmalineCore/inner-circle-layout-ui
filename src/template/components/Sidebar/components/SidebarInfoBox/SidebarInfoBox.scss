@@ -1,3 +1,5 @@
+@use "../../../../../styles/media";
+
 .sidebar-infobox {
   display: flex;
   align-items: center;
@@ -23,7 +25,7 @@
       object-fit: cover;
     }
 
-    @include tablet-xl {
+    @include media.tablet-xl {
       width: 40px;
       height: 40px;
     }
@@ -49,13 +51,13 @@
     text-overflow: ellipsis;
   }
 
-  @include desktop-xl {
+  @include media.desktop-xl {
     padding: 0 16px 24px;
   }
 }
 
 .sidebar--collapsed .sidebar-infobox__col {
-  @include desktop {
+  @include media.desktop {
     opacity: 0;
     transform: translate3d(-20px, 0, 0);
   }

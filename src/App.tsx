@@ -22,6 +22,9 @@ export default function App() {
         <Route
           path="/*"
           element={<Template />}
+          future={{
+            v7_relativeSplatPath: true,
+          }}
         // element={<WithPrivateRoute />}
         />
       </Routes>
