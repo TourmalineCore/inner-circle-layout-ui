@@ -1,7 +1,11 @@
+@use "../../../styles/media";
+@use "../../../styles/variables";
+
+
 html.is-sidebar-mobile-opened {
   overflow: hidden;
 
-  @include desktop {
+  @include media.desktop {
     overflow: auto;
   }
 }
@@ -27,14 +31,14 @@ html.is-sidebar-mobile-opened {
     position: absolute;
     left: 0;
     top: 0;
-    z-index: $sidebar-overlay;
+    z-index: variables.$sidebar-overlay;
     display: none;
     width: 100vw;
     height: 100%;
     background-color: rgb(189 196 198 / 25%);
     opacity: 0;
 
-    @include desktop {
+    @include media.desktop {
       display: none;
     }
   }
@@ -66,14 +70,14 @@ html.is-sidebar-mobile-opened {
       outline: none;
     }
 
-    @include desktop {
+    @include media.desktop {
       display: block;
     }
   }
 
   &__inner {
     position: relative;
-    z-index: $sidebar-inner;
+    z-index: variables.$sidebar-inner;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -130,7 +134,7 @@ html.is-sidebar-mobile-opened {
     padding: 8px;
     width: 100%;
 
-    @include desktop-xl {
+    @include media.desktop-xl {
       padding: 16px 8px;
     }
   }
@@ -159,7 +163,7 @@ html.is-sidebar-mobile-opened {
       background-color: var(--color-white);
     }
 
-    @include desktop-xl {
+    @include media.desktop-xl {
       padding: 16px 8px 24px;
     }
   }
@@ -176,19 +180,19 @@ html.is-sidebar-mobile-opened {
       animation: show-overlay 0.2s ease-out 0.5s forwards;
     }
 
-    @include desktop-xl {
+    @include media.desktop-xl {
       #{$this}__overlay {
         display: none;
       }
     }
   }
 
-  @include tablet-xl {
+  @include media.tablet-xl {
     font-size: 20px;
     line-height: 1.4;
   }
 
-  @include desktop {
+  @include media.desktop {
     border-radius: 6px;
     padding: 0;
     width: var(--sidebar-width);

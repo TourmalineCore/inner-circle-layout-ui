@@ -1,19 +1,22 @@
+@use "../styles/media";
+@use "../styles/variables";
+
 .template {
   font-size: 16px;
   line-height: 1.17;
   color: var(--color-text);
-  background-color: $color-light-grey;
+  background-color: variables.$color-light-grey;
 
   &__sidebar {
     position: fixed;
     left: 0;
     top: 0;
     bottom: 0;
-    z-index: $template-sidebar;
+    z-index: variables.$template-sidebar;
     padding: 0;
     width: 0;
 
-    @include desktop {
+    @include media.desktop {
       width: auto;
     }
   }
@@ -24,7 +27,7 @@
     min-height: calc(100vh - 50px); // ie11 fallback
     min-height: calc(var(--vh, 1vh) * 100 - 50px);
 
-    @include desktop {
+    @include media.desktop {
       min-height: 100vh; // ie11 fallback
       min-height: calc(var(--vh, 1vh) * 100);
     }
@@ -37,7 +40,7 @@
     padding-left: 40px;
     width: 100%;
 
-    @include desktop {
+    @include media.desktop {
       padding-bottom: 0;
     }
   }
@@ -64,7 +67,7 @@
       text-align: right;
     }
 
-    @include tablet {
+    @include media.tablet {
       margin: 20px 0;
       padding: 16px;
       min-height: 64px;
@@ -78,7 +81,7 @@
       }
     }
 
-    @include desktop {
+    @include media.desktop {
       padding: 16px 24px;
 
       &--bottom {
@@ -87,11 +90,11 @@
     }
   }
 
-  @include tablet {
+  @include media.tablet {
     font-size: 18px;
   }
 
-  @include desktop {
+  @include media.desktop {
     padding-bottom: 0;
     padding-left: 320px; // ie11 fallback
     padding-left: calc(var(--sidebar-width));
@@ -107,8 +110,8 @@
 
 /* actions block overlay should be over sidebar */
 .is-actions-overlay-opened .template__main {
-  @include desktop {
+  @include media.desktop {
     position: relative;
-    z-index: $template-main;
+    z-index: variables.$template-main;
   }
 }

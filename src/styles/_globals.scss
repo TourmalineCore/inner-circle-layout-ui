@@ -1,3 +1,5 @@
+@use "media";
+
 :root {
   --sidebar-width: 207px;
   --sidebar-collapsed-width: 72px;
@@ -20,12 +22,12 @@
   --comp-color-dark-gray: #9ba5b7;
   --comp-color-light-gray: #f1f5f7;
 
-  @include tablet-xl {
+  @include media.tablet-xl {
     --sidebar-width: 256px;
     --mobile-controls-panel-height: 80px;
   }
 
-  @include desktop-xl {
+  @include media.desktop-xl {
     --sidebar-width: 318px;
   }
 }

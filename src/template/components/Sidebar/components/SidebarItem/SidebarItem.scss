@@ -1,3 +1,6 @@
+@use "../../../../../styles/media";
+@use "../../../../../styles/variables";
+
 .sidebar-item {
   $this: &;
 
@@ -25,7 +28,7 @@
     width: 32px;
     height: 32px;
 
-    @include tablet-xl {
+    @include media.tablet-xl {
       width: 40px;
       height: 40px;
     }
@@ -40,7 +43,7 @@
     margin-right: 8px;
     text-align: center;
 
-    @include tablet {
+    @include media.tablet {
       margin-right: 16px;
     }
   }
@@ -49,7 +52,7 @@
     position: absolute;
     right: -4px;
     top: -2px;
-    z-index: $sidebar-item;
+    z-index: variables.$sidebar-item;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,7 +81,7 @@
     margin: 0 auto;
   }
 
-  &__mini-container + #{$this}__icon-container {
+  &__mini-container+#{$this}__icon-container {
     display: none;
   }
 
@@ -109,7 +112,7 @@
     transition: padding-left 0.3s ease, background-color 0.15s ease-out;
     will-change: padding-left;
 
-    @include tablet {
+    @include media.tablet {
       font-size: 16px;
     }
   }
@@ -154,32 +157,32 @@
 }
 
 .sidebar--collapsed .sidebar-item__mini-container {
-  @include desktop {
+  @include media.desktop {
     display: block;
   }
 }
 
 .sidebar--collapsed .sidebar-item__box {
-  @include desktop {
+  @include media.desktop {
     opacity: 0;
     transform: translate3d(-16px, 0, 0);
   }
 }
 
-.sidebar--collapsed .sidebar-item__mini-container + .sidebar-item__box {
-  @include desktop {
+.sidebar--collapsed .sidebar-item__mini-container+.sidebar-item__box {
+  @include media.desktop {
     display: none;
   }
 }
 
 .sidebar--collapsed .sidebar-item__nested .sidebar-item {
-  @include desktop {
+  @include media.desktop {
     padding-left: 14px;
   }
 }
 
 .sidebar--collapsed .sidebar-item__nested .bex-sidebar-item {
-  @include desktop {
+  @include media.desktop {
     padding-left: 0;
   }
 }
