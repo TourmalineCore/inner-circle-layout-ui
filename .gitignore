@@ -25,4 +25,8 @@ dist-ssr
 !.env.local
 **/*/env-config.js
 
+# test report artifacts
+cypress/reports/
+cypress/screenshots/
+cypress/videos/
 cypress/downloads
