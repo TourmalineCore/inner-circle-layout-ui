@@ -44,43 +44,15 @@
     }
   }
 
-  &__icon-location {
-    display: block;
-    flex: none;
-    width: 32px;
-    height: 32px;
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    @include media.tablet-xl {
-      width: 40px;
-      height: 40px;
-    }
-  }
-
   &__item-icon {
-    display: block;
-    flex: none;
-    width: 16px;
-    height: 16px;
+    display: flex;
+    width: 24px;
+    height: 24px;
 
     svg {
       width: 100%;
       height: 100%;
     }
-
-    @include media.tablet-xl {
-      width: 32px;
-      height: 32px;
-    }
-  }
-
-  @include media.tablet {
-    padding: 0 26px;
-    font-size: 15px;
   }
 
   @include media.desktop {

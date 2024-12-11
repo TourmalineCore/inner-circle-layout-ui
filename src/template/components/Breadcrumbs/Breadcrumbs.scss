@@ -36,6 +36,7 @@
     margin: 0 6px;
     width: 6px;
     height: 12px;
+    display: flex;
 
     svg {
       display: block;
@@ -66,7 +67,7 @@
   }
 
   @include media.tablet-xl {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.2;
   }
 }

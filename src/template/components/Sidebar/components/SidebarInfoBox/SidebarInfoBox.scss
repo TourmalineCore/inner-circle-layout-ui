@@ -3,8 +3,12 @@
 .sidebar-infobox {
   display: flex;
   align-items: center;
-  padding: 8px 16px 24px;
+  padding: 4px 12px 16px;
   white-space: nowrap;
+
+  @include media.tablet-xl {
+    padding: 8px 16px 24px;
+  }
 
   &__image {
     display: flex;
@@ -33,15 +37,23 @@
 
   &__col {
     overflow: hidden;
-    margin-left: 16px;
+    margin-left: 8px;
     transition: opacity 0.3s ease 0s, transform 0.3s ease 0s;
+
+    @include media.tablet-xl {
+      margin-left: 16px;
+    }
   }
 
   &__name {
     overflow: hidden;
     font-weight: inherit;
-    font-size: 16px;
+    font-size: 14px;
     text-overflow: ellipsis;
+
+    @include media.tablet-xl {
+      font-size: 18px;
+    }
   }
 
   &__email {

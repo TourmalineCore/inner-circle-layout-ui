@@ -63,14 +63,15 @@
 
     &--bottom {
       display: none;
-      margin-bottom: 0;
       text-align: right;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
 
     @include media.tablet {
       margin: 20px 0;
-      padding: 16px;
-      min-height: 64px;
 
       &--top {
         margin-top: 0;
@@ -82,7 +83,7 @@
     }
 
     @include media.desktop {
-      padding: 16px 24px;
+      padding: 8px 24px;
 
       &--bottom {
         display: block;

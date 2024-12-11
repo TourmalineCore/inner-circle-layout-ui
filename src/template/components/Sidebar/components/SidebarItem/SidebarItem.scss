@@ -11,20 +11,25 @@
   margin-bottom: 8px;
   border: none;
   border-radius: 16px;
-  padding: 8px;
+  padding: 4px;
   width: 100%;
   min-height: 24px;
   font-family: inherit;
   font-weight: inherit;
-  font-size: 18px;
+  font-size: 14px;
   text-decoration: none;
   color: inherit;
   background-color: transparent;
   cursor: pointer;
   transition: background-color 0.15s ease-out;
 
+  @include media.tablet-xl {
+    font-size: 18px;
+    padding: 8px;
+  }
+
   &__icon {
-    flex: none;
+    display: flex;
     width: 32px;
     height: 32px;
 
@@ -43,7 +48,7 @@
     margin-right: 8px;
     text-align: center;
 
-    @include media.tablet {
+    @include media.tablet-xl {
       margin-right: 16px;
     }
   }
@@ -105,15 +110,17 @@
   }
 
   &__nested #{$this} {
-    padding: 8px;
-    padding-left: 52px;
+    padding: 4px;
+    padding-left: 44px;
     min-height: 18px;
     font-size: 14px;
     transition: padding-left 0.3s ease, background-color 0.15s ease-out;
     will-change: padding-left;
 
-    @include media.tablet {
+    @include media.tablet-xl {
       font-size: 16px;
+      padding: 8px;
+      padding-left: 64px;
     }
   }
 

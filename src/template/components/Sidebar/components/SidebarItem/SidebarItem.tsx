@@ -98,12 +98,12 @@ function SidebarItem({
                 <div className="sidebar-item__icon">
                   {iconActive
                     ? (
-                      <span>
+                      <span className="sidebar-item__icon">
                         {iconActive}
                       </span>
                     )
                     : (
-                      <span>
+                      <span className="sidebar-item__icon">
                         {icon}
                       </span>
                     )}
