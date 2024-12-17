@@ -17,7 +17,6 @@ import Sidebar from './components/Sidebar/Sidebar'
 
 import { useSidebarRoutes } from './hooks/useSidebarRoutes'
 
-// import { getAdminRoutes, getSidebarRoutes } from '../routes/adminRoutes'
 import { getSidebarRoutes } from '../routes/adminRoutes'
 import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext'
 import { parseJwt } from '../common/utils/utilsForPermissions'
@@ -29,13 +28,10 @@ function Template() {
   const accessBasedOnPemissionsState = useContext(AccessBasedOnPemissionsStateContext)
 
   const parsedSidebarRoutes = useSidebarRoutes(getSidebarRoutes(accessBasedOnPemissionsState.accessPermissions), location)
-  // const adminRoutes = getAdminRoutes(accessBasedOnPemissionsState.accessPermissions)
 
-  // const breadcrumbs = useBreadcrumbs(adminRoutes as BreadcrumbsRoute<string>[], {
   const breadcrumbs = useBreadcrumbs(parsedSidebarRoutes as BreadcrumbsRoute<string>[], {
     excludePaths: [
       `/`,
-      `/compensations`,
     ],
   })
 
