@@ -1,42 +1,17 @@
-// import { BreadcrumbComponentProps } from 'use-react-router-breadcrumbs'
 import { profileSidebarRoutes } from '../pages/profile/routes'
 import { SidebarRoutesProps } from '../types'
 import { employeesSidebarRoutes } from '../pages/employees/routes'
 import { Permission } from './state/AccessBasedOnPemissionsState'
-// import {
-//   IAMSidebarRoutes,
-//   // rolesSidebarRoutes,
-//   // sidebarAccountManagement,
-//   // tenantsSidebarRoutes
-// } from '../pages/iam/routes'
+import { IAMSidebarRoutes, roleSidebarRoutes, accountSidebarRoutes, tenantSidebarRoutes } from '../pages/iam/routes'
 import { compensationsSidebarRoutes, getRouteForCompensations } from '../pages/compensations/routes'
 import { documentsSidebarRoutes } from '../pages/documents/routes'
-
-// // export function getAdminRoutes(accessPermissions: Map<keyof typeof Permission, boolean>) {
-// export function getAdminRoutes() {
-//   const routes: {
-//     path: string,
-//     breadcrumb: string | ((props: BreadcrumbComponentProps) => string | undefined),
-//     Component: () => JSX.Element,
-//   }[] = []
-
-//   // if (accessPermissions.get(`CanRequestCompensations`)) {
-//   routes.push(...compensationPersonalRoutes)
-//   // }
-
-//   // if (accessPermissions.get(`CanManageCompensations`)) {
-//   routes.push(...compensationAllRoutes)
-//   // }
-
-//   return routes
-// }
 
 export function getSidebarRoutes(accessPermissions: Map<keyof typeof Permission, boolean>) {
   const routes: SidebarRoutesProps[] = []
 
-  // const copyAccountManagement = {
-  //   ...IAMSidebarRoutes,
-  // }
+  const copyAccountManagement = {
+    ...IAMSidebarRoutes,
+  }
 
   if (accessPermissions.get(`ViewPersonalProfile`)) {
     routes.push(...profileSidebarRoutes)
@@ -62,46 +37,46 @@ export function getSidebarRoutes(accessPermissions: Map<keyof typeof Permission,
     routes.push(...documentsSidebarRoutes)
   }
 
-  // if (accessPermissions.get(`ViewAccounts`) && accessPermissions.get(`ViewRoles`) && accessPermissions.get(`CanManageTenants`)) {
-  //   copyAccountManagement.routes = [
-  //     accountsSidebarRoutes,
-  //     rolesSidebarRoutes,
-  //     tenantsSidebarRoutes,
-  //   ]
+  if (accessPermissions.get(`ViewAccounts`) && accessPermissions.get(`ViewRoles`) && accessPermissions.get(`CanManageTenants`)) {
+    copyAccountManagement.routes = [
+      accountSidebarRoutes,
+      roleSidebarRoutes,
+      tenantSidebarRoutes,
+    ]
 
-  //   routes.push(copyAccountManagement)
+    routes.push(copyAccountManagement)
 
-  //   return routes
-  // }
+    return routes
+  }
 
-  // if (accessPermissions.get(`ViewAccounts`)) {
-  //   copyAccountManagement.routes = [
-  //     accountsSidebarRoutes,
-  //   ]
+  if (accessPermissions.get(`ViewAccounts`)) {
+    copyAccountManagement.routes = [
+      accountSidebarRoutes,
+    ]
 
-  //   routes.push(copyAccountManagement)
-  //   return routes
-  // }
+    routes.push(copyAccountManagement)
+    return routes
+  }
 
-  // if (accessPermissions.get(`ViewRoles`)) {
-  //   copyAccountManagement.routes = [
-  //     rolesSidebarRoutes,
-  //   ]
+  if (accessPermissions.get(`ViewRoles`)) {
+    copyAccountManagement.routes = [
+      roleSidebarRoutes,
+    ]
 
-  //   routes.push(copyAccountManagement)
+    routes.push(copyAccountManagement)
 
-  //   return routes
-  // }
+    return routes
+  }
 
-  // if (accessPermissions.get(`CanManageTenants`)) {
-  //   copyAccountManagement.routes = [
-  //     tenantsSidebarRoutes,
-  //   ]
+  if (accessPermissions.get(`CanManageTenants`)) {
+    copyAccountManagement.routes = [
+      tenantSidebarRoutes,
+    ]
 
-  //   routes.push(copyAccountManagement)
+    routes.push(copyAccountManagement)
 
-  //   return routes
-  // }
+    return routes
+  }
 
   return routes
 }
