@@ -4,12 +4,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 // import reportWebVitals from './reportWebVitals';
 
-// import App from './App'
-
 import { ThemeProvider } from './theme/themeContext'
-// import Template from './template/Template'
 import App from './App'
-// import { authService } from './common/authService';
+import { authService } from './common/authService'
 // import { refreshTokenAndSubscribe } from './common/api/refreshByInterval';
 
 declare global {
@@ -17,6 +14,7 @@ declare global {
   interface Window {
     __ENV__: {
       API_ROOT: string,
+      API_ROOT_AUTH: string,
     },
   }
 }
@@ -28,13 +26,11 @@ async function initApp() {
     .createRoot(document.getElementById(`root`)!)
     .render(
       <React.StrictMode>
-        {/* <authService.AuthProvider> */}
-        <ThemeProvider>
-          {/* hello */}
-          {/* <Template /> */}
-          <App />
-        </ThemeProvider>
-        {/* </authService.AuthProvider> */}
+        <authService.AuthProvider>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </authService.AuthProvider>
       </React.StrictMode>,
     )
 }
