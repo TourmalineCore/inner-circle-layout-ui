@@ -61,6 +61,12 @@ module.exports = {
       "error",
       "unix",
     ],
+    // remove any type error
+    "@typescript-eslint/no-explicit-any": "off",
+
+    //remove comment error
+    "@typescript-eslint/ban-ts-comment": "off",
+
     "@typescript-eslint/semi": "off",
     "@typescript-eslint/member-delimiter-style": [
       "warn", {

@@ -34,7 +34,6 @@ function SidebarItem({
   sidebarContainerRef?: MutableRefObject<HTMLElement | null>,
   className?: string,
   icon?: ReactNode,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   iconActive?: any,
   iconMini?: ReactNode,
   label: string,
