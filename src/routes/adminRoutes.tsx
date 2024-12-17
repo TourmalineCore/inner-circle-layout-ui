@@ -2,7 +2,7 @@
 import { profileSidebarRoutes } from '../pages/profile/routes'
 import { SidebarRoutesProps } from '../types'
 import { employeesSidebarRoutes } from '../pages/employees/routes'
-// import { Permission } from './state/AccessBasedOnPemissionsState'
+import { Permission } from './state/AccessBasedOnPemissionsState'
 // import {
 //   IAMSidebarRoutes,
 //   // rolesSidebarRoutes,
@@ -31,41 +31,36 @@ import { documentsSidebarRoutes } from '../pages/documents/routes'
 //   return routes
 // }
 
-// export function getSidebarRoutes(accessPermissions: Map<keyof typeof Permission, boolean>) {
-export function getSidebarRoutes() {
+export function getSidebarRoutes(accessPermissions: Map<keyof typeof Permission, boolean>) {
   const routes: SidebarRoutesProps[] = []
 
   // const copyAccountManagement = {
   //   ...IAMSidebarRoutes,
   // }
 
-  // if (accessPermissions.get(`ViewPersonalProfile`)) {
-  routes.push(...profileSidebarRoutes)
-  // }
+  if (accessPermissions.get(`ViewPersonalProfile`)) {
+    routes.push(...profileSidebarRoutes)
+  }
 
-  // if (accessPermissions.get('AccessAnalyticalForecastsPage')) {
-  //   routes.push(...analyticsSidebarRoutes);
-  // }
+  if (accessPermissions.get(`ViewContacts`) || accessPermissions.get(`ViewSalaryAndDocumentsData`)) {
+    routes.push(...employeesSidebarRoutes)
+  }
 
-  // if (accessPermissions.get(`ViewContacts`) || accessPermissions.get(`ViewSalaryAndDocumentsData`)) {
-  routes.push(...employeesSidebarRoutes)
-  // }
+  if (accessPermissions.get(`CanRequestCompensations`) && accessPermissions.get(`CanManageCompensations`)) {
+    routes.push(...compensationsSidebarRoutes)
+  }
 
-  // if (accessPermissions.get(`CanRequestCompensations`) && accessPermissions.get(`CanManageCompensations`)) {
-  routes.push(...compensationsSidebarRoutes)
-  // }
+  if (accessPermissions.get(`CanRequestCompensations`) && !accessPermissions.get(`CanManageCompensations`)) {
+    routes.push(...getRouteForCompensations(`CanRequestCompensations`))
+  }
 
-  // if (accessPermissions.get(`CanRequestCompensations`) && !accessPermissions.get(`CanManageCompensations`)) {
-  routes.push(...getRouteForCompensations(`CanRequestCompensations`))
-  // }
+  if (accessPermissions.get(`CanManageCompensations`) && !accessPermissions.get(`CanRequestCompensations`)) {
+    routes.push(...getRouteForCompensations(`CanManageCompensations`))
+  }
 
-  // if (accessPermissions.get(`CanManageCompensations`) && !accessPermissions.get(`CanRequestCompensations`)) {
-  routes.push(...getRouteForCompensations(`CanManageCompensations`))
-  // }
-
-  // if (accessPermissions.get(`CanManageDocuments`)) {
-  routes.push(...documentsSidebarRoutes)
-  // }
+  if (accessPermissions.get(`CanManageDocuments`)) {
+    routes.push(...documentsSidebarRoutes)
+  }
 
   // if (accessPermissions.get(`ViewAccounts`) && accessPermissions.get(`ViewRoles`) && accessPermissions.get(`CanManageTenants`)) {
   //   copyAccountManagement.routes = [
