@@ -8,4 +8,8 @@ export default defineConfig({
     react(),
     svgr(),
   ],
+  server: {
+    port: 4006,
+  },
+  base: `/layout`,
 })
