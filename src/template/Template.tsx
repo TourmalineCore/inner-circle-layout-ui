@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { memo, useState } from 'react'
+import { memo, useContext, useState } from 'react'
 import useBreadcrumbs, { BreadcrumbsRoute } from 'use-react-router-breadcrumbs'
 
 import { useLocation } from 'react-router-dom'
@@ -19,17 +19,16 @@ import { useSidebarRoutes } from './hooks/useSidebarRoutes'
 
 // import { getAdminRoutes, getSidebarRoutes } from '../routes/adminRoutes'
 import { getSidebarRoutes } from '../routes/adminRoutes'
-// import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext'
-// import { parseJwt } from '../common/utils/utilsForPermissions'
-// import { authService } from '../common/authService'
+import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext'
+import { parseJwt } from '../common/utils/utilsForPermissions'
+import { authService } from '../common/authService'
 
 function Template() {
   const location = useLocation()
 
-  // const accessBasedOnPemissionsState = useContext(AccessBasedOnPemissionsStateContext)
+  const accessBasedOnPemissionsState = useContext(AccessBasedOnPemissionsStateContext)
 
-  // const parsedSidebarRoutes = useSidebarRoutes(getSidebarRoutes(accessBasedOnPemissionsState.accessPermissions), location)
-  const parsedSidebarRoutes = useSidebarRoutes(getSidebarRoutes(), location)
+  const parsedSidebarRoutes = useSidebarRoutes(getSidebarRoutes(accessBasedOnPemissionsState.accessPermissions), location)
   // const adminRoutes = getAdminRoutes(accessBasedOnPemissionsState.accessPermissions)
 
   // const breadcrumbs = useBreadcrumbs(adminRoutes as BreadcrumbsRoute<string>[], {
@@ -53,12 +52,11 @@ function Template() {
     ? breadcrumbs[breadcrumbs.length - 2].key
     : null
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  // const [
-  //   token,
-  // ] = useContext(authService.AuthContext)
-  // const infoBoxDataName = parseJwt(token).corporateEmail.split(`@`)[0]
+  const [
+    token,
+  ] = useContext(authService.AuthContext)
+  const infoBoxDataName = parseJwt(token).corporateEmail.split(`@`)[0]
 
   return (
     <>
@@ -70,7 +68,7 @@ function Template() {
         <div className="template__sidebar">
           <Sidebar
             infoBoxData={{
-              name: `infoBoxDataName`,
+              name: infoBoxDataName,
             }}
             menuData={parsedSidebarRoutes}
             isCollapsed={isSidebarCollapsed}
