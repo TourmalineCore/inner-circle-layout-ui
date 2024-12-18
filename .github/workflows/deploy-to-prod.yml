@@ -6,9 +6,6 @@ on:
       - master
   pull_request:
 
-env:
-  GITHUB_REGISTRY: ghcr.io
-
 jobs:
   deploy-to-prod-k8s:
     needs: build-image
