@@ -1,7 +1,4 @@
 import './commands'
-import '../env-config'
-
-/// <reference types="cypress" />
 
 // commands
 import { mount } from 'cypress/react18'
