@@ -2,7 +2,7 @@
 
 image:
   registry: ghcr.io
-  repository: tourmalinecore/inner-circle/layout
+  repository: tourmalinecore/inner-circle/layout-ui
   tag: "latest"
   pullPolicy: Always
   debug: true
