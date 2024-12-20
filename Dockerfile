@@ -8,6 +8,8 @@ RUN npm run build -- --base=/layout
 FROM nginx:1.26.0-alpine3.19-slim
 COPY /ci/nginx.conf /data/conf/nginx.conf
 COPY --from=build /dist /usr/share/nginx/html
+COPY ./env-config.js /usr/share/nginx/html/layout/env-config.js
+
 EXPOSE 80
 
 WORKDIR /usr/share/nginx/html
