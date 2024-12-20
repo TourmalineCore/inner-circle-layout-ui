@@ -4,7 +4,7 @@
 
 # Recreate config file
 rm -rf ./env-config.js
-touch ./layout//env-config.js
+touch ./env-config.js
 
 # Create ./env-config.js file with a global variable which will contain env vars 
 echo "window.__ENV__ = {" >> ./env-config.js
