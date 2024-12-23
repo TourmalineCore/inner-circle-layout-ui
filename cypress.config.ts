@@ -3,10 +3,7 @@ import { defineConfig } from "cypress"
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
   e2e: {
-    baseUrl: `http://localhost:5173`,
-  },
-  env: {
-    API_URL: `http://localhost:5005/to-dos-api`,
+    baseUrl: `http://localhost:4006`,
   },
   component: {
     devServer: {
