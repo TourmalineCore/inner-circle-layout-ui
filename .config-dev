@@ -1,0 +1,2 @@
+ENV_KEY:dev
+API_ROOT_AUTH:https://innercircle.tourmalinecore.com/api/auth
