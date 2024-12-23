@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-      - feature/*
-      
+  pull_request:
+
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
@@ -32,3 +32,26 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ghcr.io/tourmalinecore/inner-circle/layout-ui:latest
+  deploy-to-prod-k8s:
+    needs: push_to_registry
+    name: Deploy service to k8s for prod environment  
+    if: github.event_name == 'push'
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: Deploy
+        uses: WyriHaximus/github-action-helm3@v3
+        with:
+          exec: |
+            RELEASE_NAME=layout
+            helm repo add bitnami https://charts.bitnami.com/bitnami
+            helm upgrade --install --namespace dev-inner-circle --create-namespace --values ./ci/values.yaml \
+            --set "image.tag=${{ github.sha }}" \
+            --set "ingress.enabled=true" \
+            --set "ingress.hostname=${{ secrets.DEV_HOST }}" \
+            --set "extraConfigMapEnvVars.API_ROOT_AUTH=${{ secrets.DEV_LINK_TO_API_ROOT_AUTH }}" \
+            --set "extraConfigMapEnvVars.ENV_KEY=${{ secrets.DEV_ENV }}" \
+            "${RELEASE_NAME}" \
+            bitnami/nginx --version 15.0.2
+          kubeconfig: "${{ secrets.DEV_KUBECONFIG }}"
