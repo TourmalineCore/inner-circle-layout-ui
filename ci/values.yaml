@@ -3,7 +3,7 @@
 image:
   registry: ghcr.io
   repository: tourmalinecore/inner-circle/layout-ui
-  tag: "latest"
+  tag: ""
   pullPolicy: Always
   debug: true
 
