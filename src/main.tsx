@@ -14,7 +14,6 @@ declare global {
   interface Window {
     __ENV__: {
       ENV_KEY: string,
-      // API_ROOT: string,
       API_ROOT_AUTH: string,
     },
   }

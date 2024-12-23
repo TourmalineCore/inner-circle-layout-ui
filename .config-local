@@ -1,2 +1,1 @@
 ENV_KEY:local
-API_ROOT:http://real-world.local.tourmalinecore.internal/api
