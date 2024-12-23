@@ -46,7 +46,7 @@ jobs:
         with:
           exec: |
             RELEASE_NAME=layout
-            helm repo add bitnami https://mirror.yandex.ru/helm/charts.bitnami.com
+            helm repo add bitnami https://charts.bitnami.com/bitnami
             helm upgrade --install --namespace dev-inner-circle --create-namespace --values ./ci/values.yaml \
             --set "image.tag=${{ github.sha }}" \
             --set "ingress.enabled=true" \
