@@ -1,5 +1,4 @@
-// import { ReactComponent as IconIAM } from '../../assets/icons/icon-iam.svg'
-import IconIAM from '../../assets/icons/icon-iam.svg'
+import IconIAM from '../../assets/icons/icon-iam.svg?react'
 
 const DEFAULT_PATH = `/account-management`
 
@@ -7,21 +6,21 @@ export const accountSidebarRoutes = {
   isWindowRedirectNecessary: true,
   path: `${DEFAULT_PATH}/accounts`,
   label: `Accounts`,
-  iconMini: <img src={IconIAM} />,
+  iconMini: <IconIAM />,
 }
 
 export const roleSidebarRoutes = {
   isWindowRedirectNecessary: true,
   path: `${DEFAULT_PATH}/roles`,
   label: `Roles`,
-  iconMini: <img src={IconIAM} />,
+  iconMini: <IconIAM />,
 }
 
 export const tenantSidebarRoutes = {
   isWindowRedirectNecessary: true,
   path: `${DEFAULT_PATH}/tenants`,
   label: `Tenants`,
-  iconMini: <img src={IconIAM} />,
+  iconMini: <IconIAM />,
 }
 
 export const IAMSidebarRoutes: {
@@ -39,7 +38,7 @@ export const IAMSidebarRoutes: {
   // path: `${DEFAULT_PATH}`,
   path: `/`,
   label: `IAM`,
-  icon: <img src={IconIAM} />,
-  iconActive: <img src={IconIAM} />,
+  icon: <IconIAM />,
+  iconActive: <IconIAM />,
   routes: [],
 }

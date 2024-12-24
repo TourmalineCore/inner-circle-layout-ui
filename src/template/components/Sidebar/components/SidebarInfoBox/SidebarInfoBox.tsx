@@ -1,5 +1,4 @@
-// import { ReactComponent as IconPersonalProfile } from '../../../../../assets/icons/icon-personal-profile.svg'
-import IconPersonalProfile from '../../../../../assets/icons/icon-personal-profile.svg'
+import IconPersonalProfile from '../../../../../assets/icons/icon-personal-profile.svg?react'
 
 export function SidebarInfoBox({
   name,
@@ -9,8 +8,7 @@ export function SidebarInfoBox({
   return (
     <div className="sidebar-infobox">
       <div className="sidebar-infobox__image">
-        {/* <IconPersonalProfile /> */}
-        <img src={IconPersonalProfile} />
+        <IconPersonalProfile />
       </div>
       <div className="sidebar-infobox__col"
         data-cy="sidebar-infobox">

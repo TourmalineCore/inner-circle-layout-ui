@@ -3,10 +3,8 @@ import { memo, useContext, useState } from 'react'
 import useBreadcrumbs, { BreadcrumbsRoute } from 'use-react-router-breadcrumbs'
 
 import { useLocation } from 'react-router-dom'
-import IconLogoutActive from '../assets/icons/icon-logout-active.svg'
-import IconLogout from '../assets/icons/icon-logout.svg'
-// import { ReactComponent as IconLogoutActive } from '../assets/icons/icon-logout-active.svg'
-// import { ReactComponent as IconLogout } from '../assets/icons/icon-logout.svg'
+import IconLogoutActive from '../assets/icons/icon-logout-active.svg?react'
+import IconLogout from '../assets/icons/icon-logout.svg?react'
 
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs'
 import Copyright from './components/Copyright/Copyright'
@@ -76,10 +74,8 @@ function Template() {
 
               <SidebarItem
                 className="template__logout"
-                // icon={<IconLogout />}
-                // iconActive={<IconLogoutActive />}
-                icon={<img src={IconLogout} />}
-                iconActive={<img src={IconLogoutActive} />}
+                icon={<IconLogout />}
+                iconActive={<IconLogoutActive />}
                 isWindowRedirectNecessary
                 path="/auth/logout"
                 label="LogOut"

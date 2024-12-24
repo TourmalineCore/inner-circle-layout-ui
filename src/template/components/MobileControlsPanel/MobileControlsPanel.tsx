@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-// import { ReactComponent as IconBurger } from '../../../assets/icons/icon-burger.svg'
-import IconBurger from '../../../assets/icons/icon-burger.svg'
-// import { ReactComponent as IconCross } from '../../../assets/icons/icon-cross.svg'
-import IconCross from '../../../assets/icons/icon-cross.svg'
+import IconBurger from '../../../assets/icons/icon-burger.svg?react'
+import IconCross from '../../../assets/icons/icon-cross.svg?react'
 
 function MobileControlsPanel({
   prevPath,
@@ -34,8 +32,8 @@ function MobileControlsPanel({
         onClick={onToggleClick}
       >
         <div className="mobile-controls-panel__item-icon">
-          {!isToggled ? <img src={IconBurger} />
-            : <img src={IconCross} />}
+          {!isToggled ? <IconBurger />
+            : <IconCross />}
         </div>
       </button>
     </div>
