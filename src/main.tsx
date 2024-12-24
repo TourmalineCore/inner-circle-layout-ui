@@ -13,7 +13,6 @@ declare global {
   // this makes TS errors go away https://stackoverflow.com/a/56458070
   interface Window {
     __ENV__: {
-      ENV_KEY: string,
       API_ROOT_AUTH: string,
     },
   }

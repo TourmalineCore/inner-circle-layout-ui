@@ -5,12 +5,8 @@
   "type": "module",
   "homepage": "/layout",
   "scripts": {
-    "start": "run-s create-config:local vite-start",
-    "start:local": "run-s create-config:local vite-start",
+    "start": "run-s vite-start",
     "vite-start": "vite --host",
-    "create-config:prod": "node local-config-builder prod",
-    "create-config:local": "node local-config-builder local",
-    "start-local-env": "vite --host --mode local-env",
     "build": "tsc && vite build",
     "lint": "run-s lint-ts lint-eslint",
     "lint-eslint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
