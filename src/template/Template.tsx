@@ -18,7 +18,7 @@ import { useSidebarRoutes } from './hooks/useSidebarRoutes'
 import { getSidebarRoutes } from '../routes/adminRoutes'
 import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext'
 import { parseJwt } from '../common/utils/utilsForPermissions'
-import { authService } from '../common/authService'
+import { TODO_TOKEN } from '../common/withPrivateRoute'
 
 function Template() {
   const location = useLocation()
@@ -46,11 +46,12 @@ function Template() {
     ? breadcrumbs[breadcrumbs.length - 2].key
     : null
 
-  // @ts-ignore
-  const [
-    token,
-  ] = useContext(authService.AuthContext)
-  const infoBoxDataName = parseJwt(token).corporateEmail.split(`@`)[0]
+  // TODO: after connect with other services we will get token as prop
+  // const [
+  //   token,
+  // ] = TODO_TOKEN
+
+  const infoBoxDataName = parseJwt(TODO_TOKEN).corporateEmail.split(`@`)[0]
 
   return (
     <>

@@ -1,35 +1,19 @@
-import { FunctionComponent, useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { authService } from './authService'
+import { FunctionComponent, useContext } from 'react'
 import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext'
 import { parseJwt } from './utils/utilsForPermissions'
 
-const isProduction = true
+export const TODO_TOKEN: string = `eyJhbGciOiJIUzI1NiJ9.eyJjb3Jwb3JhdGVFbWFpbCI6ImV4YW1wbGVAZXhhbXBsZS5jb20iLCJwZXJtaXNzaW9ucyI6WyJWaWV3UGVyc29uYWxQcm9maWxlIiwiVmlld0NvbnRhY3RzIiwiVmlld0FjY291bnRzIiwiQ2FuUmVxdWVzdENvbXBlbnNhdGlvbnMiLCJDYW5NYW5hZ2VEb2N1bWVudHMiXSwiZXhwIjoxNzM1MTAyNjc1fQ.dqPeF94lAWePT0IizUwbuQGyN0kzu2dWVBPN_HUg7gQ`
 
 export const withPrivateRoute = <Type extends Record<string, unknown>>(ComposedComponent: FunctionComponent<Type>) => function RequireAuthentication(props: Type) {
-  // @ts-ignore
-  const [
-    token,
-  ] = useContext(authService.AuthContext)
+  // TODO: after connect with other services we will get token as prop
+  // const [
+  //   token,
+  // ] = TODO_TOKEN
+
   const accessBasedOnPemissionsState = useContext(AccessBasedOnPemissionsStateContext)
 
-  const navigation = useNavigate()
-
-  useEffect(() => {
-    if (!token) {
-      if (isProduction) {
-        window.location.href = `/auth`
-      }
-      else {
-        navigation(`/auth`)
-      }
-    }
-  }, [
-    token,
-  ])
-
-  if (token) {
-    accessBasedOnPemissionsState.checkPermissionFromToken(parseJwt(token).permissions)
+  if (TODO_TOKEN) {
+    accessBasedOnPemissionsState.checkPermissionFromToken(parseJwt(TODO_TOKEN).permissions)
   }
-  return token ? <ComposedComponent {...props} /> : null
+  return TODO_TOKEN ? <ComposedComponent {...props} /> : null
 }
