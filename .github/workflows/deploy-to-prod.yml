@@ -8,10 +8,12 @@ on:
 
 jobs:
   deploy-to-prod:
+    needs: push_to_registry
     runs-on: ubuntu-22.04
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
+
       - name: Create kubeconfig file
         run: |
           cd $HOME
