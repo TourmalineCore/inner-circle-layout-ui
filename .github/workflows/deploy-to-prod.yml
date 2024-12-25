@@ -5,10 +5,14 @@ on:
     branches:
       - master
       - feature/*
+  workflow_run:
+    workflows: 
+      - push_to_registry
+    types:
+      - completed
 
 jobs:
   deploy-to-prod:
-    needs: push_to_registry
     runs-on: ubuntu-22.04
     steps:
       - name: Check out the repo
