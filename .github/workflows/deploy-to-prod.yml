@@ -32,25 +32,3 @@ jobs:
               file: ./Dockerfile
               push: true
               tags: ghcr.io/tourmalinecore/inner-circle/layout-ui:${{ github.sha }}
-  
-  deploy-to-prod:
-    needs: push_to_registry
-    if: github.event_name == 'push'
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
-
-      - name: Create kubeconfig file
-        run: |
-          cd $HOME
-          mkdir .kube
-          echo "${{ secrets.DEV_KUBECONFIG }}" > .kube/config
-
-      - name: Deploy
-        uses: helmfile/helmfile-action@v1.9.0
-        with:
-          helmfile-version: 'v0.164.0'
-          helm-version: 'v3.14.4'
-          helmfile-args: apply --namespace prod -f ci/helmfile.yaml
-          helmfile-auto-init: "false"
