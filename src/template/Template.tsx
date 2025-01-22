@@ -60,7 +60,9 @@ function Template() {
           'template--sidebar-collapsed': isSidebarCollapsed,
         })}
       >
-        <div className="template__sidebar">
+        <div
+          className="template__sidebar"
+          data-cy='template-sidebar'>
           <Sidebar
             infoBoxData={{
               name: infoBoxDataName,
@@ -86,7 +88,9 @@ function Template() {
         </div>
 
         <div className="template__main">
-          <div className="template__panel template__panel--top">
+          <div
+            className="template__panel template__panel--top"
+            data-cy='template-panel-top'>
             <Breadcrumbs list={breadcrumbs} />
           </div>
 
@@ -94,7 +98,9 @@ function Template() {
             <TemplatePages routes={adminRoutes} />
           </div> */}
 
-          <div className="template__panel template__panel--bottom">
+          <div
+            className="template__panel template__panel--bottom"
+            data-cy='template-panel-bottom'>
             <Copyright />
           </div>
         </div>
