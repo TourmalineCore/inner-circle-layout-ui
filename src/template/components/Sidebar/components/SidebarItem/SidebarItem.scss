@@ -143,10 +143,6 @@
     background-color: rgb(255 255 255 / 60%);
   }
 
-  &:last-child {
-    margin-bottom: 0;
-  }
-
   &--active {
     position: relative;
     background-color: var(--color-white);

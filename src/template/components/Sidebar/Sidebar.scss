@@ -104,6 +104,8 @@ html.is-sidebar-mobile-opened {
   }
 
   &__collapse-button {
+    margin-bottom: 0;
+
     .sidebar-item__icon {
       width: 32px;
       height: 32px;
@@ -150,7 +152,7 @@ html.is-sidebar-mobile-opened {
 
   &__bottom {
     position: relative;
-    padding: 8px 8px 16px;
+    padding: 8px 8px 0px;
     width: 100%;
 
     &::before {
