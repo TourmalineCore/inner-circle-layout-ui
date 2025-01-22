@@ -37,7 +37,7 @@ export const IAMSidebarRoutes: {
   // isWindowRedirectNecessary: true,
   // path: `${DEFAULT_PATH}`,
   path: `/`,
-  label: `Managenemt`, // TODO: call as 'IAM'
+  label: `Management`, // TODO: call as 'IAM'
   icon: <IconIAM />,
   iconActive: <IconIAM />,
   routes: [],
