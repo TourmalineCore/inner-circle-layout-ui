@@ -1,0 +1,122 @@
+@use "../styles/media";
+@use "../styles/variables";
+
+.template {
+  font-size: 16px;
+  line-height: 1.17;
+  color: var(--color-text);
+  background-color: variables.$color-light-grey;
+
+  &__sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: variables.$template-sidebar;
+    padding: 0;
+    width: 0;
+
+    @include media.desktop {
+      width: auto;
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 50px); // ie11 fallback
+    min-height: calc(var(--vh, 1vh) * 100 - 50px);
+
+    @include media.desktop {
+      min-height: 100vh; // ie11 fallback
+      min-height: calc(var(--vh, 1vh) * 100);
+    }
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    padding-right: 40px;
+    padding-bottom: var(--mobile-controls-panel-height);
+    padding-left: 40px;
+    width: 100%;
+
+    @include media.desktop {
+      padding-bottom: 0;
+    }
+  }
+
+  &__logout {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  &__panel {
+    margin: 10px 0;
+    padding: 8px 16px;
+    width: 100%;
+    min-height: 48px;
+    box-shadow: 0 0 43px rgb(24 14 54 / 10%);
+    background-color: var(--color-white);
+
+    &--top {
+      margin-top: 0;
+    }
+
+    &--bottom {
+      display: none;
+      text-align: right;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    @include media.tablet {
+      margin: 20px 0;
+      padding: 16px; // TODO: remove
+      min-height: 64px; // TODO: remove
+
+      &--top {
+        margin-top: 0;
+      }
+
+      &--bottom {
+        margin-bottom: 0;
+      }
+    }
+
+    @include media.desktop {
+      padding: 16px 24px;
+      //padding: 8px 24px;
+
+      &--bottom {
+        display: block;
+      }
+    }
+  }
+
+  @include media.tablet {
+    font-size: 18px;
+  }
+
+  @include media.desktop {
+    padding-bottom: 0;
+    padding-left: 320px; // ie11 fallback
+    padding-left: calc(var(--sidebar-width));
+    transition: padding-left 0.3s ease;
+    will-change: padding-left;
+
+    &--sidebar-collapsed {
+      padding-left: 86px; // ie11 fallback
+      padding-left: calc(var(--sidebar-collapsed-width));
+    }
+  }
+}
+
+/* actions block overlay should be over sidebar */
+.is-actions-overlay-opened .template__main {
+  @include media.desktop {
+    position: relative;
+    z-index: variables.$template-main;
+  }
+}

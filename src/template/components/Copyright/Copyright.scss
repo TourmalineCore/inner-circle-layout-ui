@@ -1,0 +1,14 @@
+.copyright {
+  display: inline-block;
+  vertical-align: sub;
+
+  &__link {
+    text-decoration: none;
+    color: var(--color-copyright-link);
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
