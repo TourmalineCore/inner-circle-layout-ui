@@ -4,6 +4,8 @@ import { withPrivateRoute } from './common/withPrivateRoute'
 import Template from './template/Template'
 import AccessBasedOnPemissionsState from './routes/state/AccessBasedOnPemissionsState'
 import AccessBasedOnPemissionsStateContext from './routes/state/AccessBasedOnPemissionsStateContext'
+import { ThemeProvider } from './theme/themeContext'
+import './styles/index.scss'
 
 const WithPrivateRoute = withPrivateRoute(Template)
 
@@ -15,15 +17,18 @@ export default function App() {
   )
 
   return (
-    <AccessBasedOnPemissionsStateContext.Provider value={routesState}>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/*"
-            element={<WithPrivateRoute />}
-          />
-        </Routes>
-      </BrowserRouter>
-    </AccessBasedOnPemissionsStateContext.Provider>
+    <ThemeProvider>
+      <AccessBasedOnPemissionsStateContext.Provider value={routesState}>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/*"
+              element={<WithPrivateRoute />}
+            />
+          </Routes>
+        </BrowserRouter>
+      </AccessBasedOnPemissionsStateContext.Provider>
+    </ThemeProvider>
+
   )
 }

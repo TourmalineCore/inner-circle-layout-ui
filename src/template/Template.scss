@@ -60,6 +60,10 @@
 
     &--top {
       margin-top: 0;
+      // ToDo: uncomment for full header be visible (check when connect services)
+      // display: block;
+      // position: fixed;
+      // top: 0; 
     }
 
     &--bottom {

@@ -1,10 +1,8 @@
-import './styles/index.scss'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 // import reportWebVitals from './reportWebVitals';
 
-import { ThemeProvider } from './theme/themeContext'
 import App from './App'
 
 async function initApp() {
@@ -13,10 +11,8 @@ async function initApp() {
     .createRoot(document.getElementById(`root`)!)
     .render(
       <React.StrictMode>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
-      </React.StrictMode>,
+        <App />
+      </React.StrictMode >,
     )
 }
 
