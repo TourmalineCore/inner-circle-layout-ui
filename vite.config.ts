@@ -9,7 +9,7 @@ export default defineConfig({
     origin: `http://localhost:4006`,
     port: 4006,
   },
-  base: `http://localhost:4006/layout`,
+  base: `/layout`,
   plugins: [
     react(),
     federation({
