@@ -39,9 +39,9 @@ export default defineConfig({
     rollupOptions: {
       external: [
         /^__mf__virtual\/.*/,
-        'react',
-        'react-dom',
-        'react/jsx-runtime'
+        `react`,
+        `react-dom`,
+        `react/jsx-runtime`,
       ],
       output: {
         format: `es`,
