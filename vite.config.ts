@@ -36,5 +36,17 @@ export default defineConfig({
   ],
   build: {
     target: `chrome89`, // Setting the target browser version for the build
+    rollupOptions: {
+      external: [
+        /^__mf__virtual\/.*/,
+        'react',
+        'react-dom',
+        'react/jsx-runtime'
+      ],
+      output: {
+        format: `es`,
+        sanitizeFileName: (file) => file,
+      },
+    },
   },
 })
