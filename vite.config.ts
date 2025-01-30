@@ -6,8 +6,8 @@ import svgr from 'vite-plugin-svgr'
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
   server: {
-    origin: `http://localhost:4006`,
-    port: 4006,
+    origin: `http://localhost:40100`,
+    port: 40100,
   },
   base: `/layout`,
   plugins: [
