@@ -8,6 +8,11 @@ export default defineConfig({
   server: {
     origin: `http://localhost:40100`,
     port: 40100,
+    cors: {
+      origin: '*',
+      methods: ['GET', 'POST', 'OPTIONS'],
+      allowedHeaders: ['Content-Type'],
+    },
   },
   base: `/layout`,
   plugins: [
@@ -46,6 +51,9 @@ export default defineConfig({
       output: {
         format: `es`,
         sanitizeFileName: (file) => file,
+        entryFileNames: `[name].js`,
+        chunkFileNames: `[name]-[hash].js`,
+        assetFileNames: `[name]-[hash][extname]`,
       },
     },
   },
