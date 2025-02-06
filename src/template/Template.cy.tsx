@@ -27,7 +27,12 @@ describe(`Layout`, () => {
 })
 
 function mountComponent() {
-  const WithPrivateRoute = withPrivateRoute(Template)
+
+  const accessToken = localStorage.getItem(`accessToken`)
+
+  const token = JSON.parse(accessToken!).value
+
+  const WithPrivateRoute = withPrivateRoute(Template, token)
 
   const routesState = new AccessBasedOnPemissionsState()
 
@@ -39,7 +44,7 @@ function mountComponent() {
         <Routes>
           <Route
             path="/*"
-            element={<WithPrivateRoute />}
+            element={<WithPrivateRoute token={token} />}
           />
         </Routes>
       </BrowserRouter>

@@ -3,9 +3,9 @@ import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPe
 
 import { parseJwt } from './utils/utilsForPermissions'
 let Token = ``
+// eslint-disable-next-line react-refresh/only-export-components
 export const withPrivateRoute = <Type extends Record<string, unknown>>(ComposedComponent: FunctionComponent<Type>, token: string) => function RequireAuthentication(props: Type) {
   Token = token
-
   const accessBasedOnPemissionsState = useContext(AccessBasedOnPemissionsStateContext)
 
   if (token) {
