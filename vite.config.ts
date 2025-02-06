@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/quotes */
 import { federation } from '@module-federation/vite'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -6,13 +7,8 @@ import svgr from 'vite-plugin-svgr'
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
   server: {
-    origin: `http://localhost:40100`,
-    port: 40100,
-    cors: {
-      origin: '*',
-      methods: ['GET', 'POST', 'OPTIONS'],
-      allowedHeaders: ['Content-Type'],
-    },
+    origin: `http://localhost:4006`,
+    port: 4006,
   },
   base: `/layout`,
   plugins: [
@@ -21,7 +17,7 @@ export default defineConfig({
       name: `inner_circle_layout_ui`, // Unique name for the application
       manifest: true,
       exposes: {
-        './layout': `./src/App.tsx`, // Exposing the sidebar module from the specified path
+        './layout': './src/App.tsx', // Exposing the sidebar module from the specified path
       },
       shared: { // Used to define dependencies that should be shared between different applications
         react: {
@@ -51,9 +47,6 @@ export default defineConfig({
       output: {
         format: `es`,
         sanitizeFileName: (file) => file,
-        entryFileNames: `[name].js`,
-        chunkFileNames: `[name]-[hash].js`,
-        assetFileNames: `[name]-[hash][extname]`,
       },
     },
   },

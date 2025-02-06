@@ -18,9 +18,10 @@ import { useSidebarRoutes } from './hooks/useSidebarRoutes'
 import { getSidebarRoutes } from '../routes/adminRoutes'
 import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext'
 import { parseJwt } from '../common/utils/utilsForPermissions'
-import { TODO_TOKEN } from '../common/withPrivateRoute'
 
-function Template() {
+function Template({
+  token,
+}: { token: string, }) {
   const location = useLocation()
 
   const accessBasedOnPemissionsState = useContext(AccessBasedOnPemissionsStateContext)
@@ -46,12 +47,7 @@ function Template() {
     ? breadcrumbs[breadcrumbs.length - 2].key
     : null
 
-  // TODO: after connect with other services we will get token as prop
-  // const [
-  //   token,
-  // ] = TODO_TOKEN
-
-  const infoBoxDataName = parseJwt(TODO_TOKEN).corporateEmail.split(`@`)[0]
+  const infoBoxDataName = parseJwt(token).corporateEmail.split(`@`)[0]
 
   return (
     <>

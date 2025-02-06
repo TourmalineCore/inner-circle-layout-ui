@@ -1,16 +1,21 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useMemo } from 'react'
 import { withPrivateRoute } from './common/withPrivateRoute'
 import Template from './template/Template'
 import AccessBasedOnPemissionsState from './routes/state/AccessBasedOnPemissionsState'
 import AccessBasedOnPemissionsStateContext from './routes/state/AccessBasedOnPemissionsStateContext'
 import { ThemeProvider } from './theme/themeContext'
 import './styles/index.scss'
-
-const WithPrivateRoute = withPrivateRoute(Template)
+import { useMemo } from 'react'
 
 // eslint-disable-next-line import/no-default-export
 export default function App() {
+
+  const accessToken = localStorage.getItem(`accessToken`)
+
+  const token = JSON.parse(accessToken!).value
+
+  const WithPrivateRoute = withPrivateRoute(Template, token)
+
   const routesState = useMemo(
     () => new AccessBasedOnPemissionsState(),
     [],
@@ -23,7 +28,7 @@ export default function App() {
           <Routes>
             <Route
               path="/*"
-              element={<WithPrivateRoute />}
+              element={<WithPrivateRoute token={token} />}
             />
           </Routes>
         </BrowserRouter>
