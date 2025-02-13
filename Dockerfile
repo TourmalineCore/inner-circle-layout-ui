@@ -1,4 +1,4 @@
-FROM node:20.11.1-alpine3.19 as build
+FROM node:20.11.1-alpine3.19 AS build
 COPY package.json .
 COPY package-lock.json .
 RUN npm ci
@@ -14,4 +14,4 @@ EXPOSE 80
 WORKDIR /usr/share/nginx/html
 RUN apk add --no-cache bash
 
-CMD nginx -g "daemon off;" -c "/data/conf/nginx.conf"
+CMD ["nginx -g 'daemon off;' -c /data/conf/nginx.conf"]
