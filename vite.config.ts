@@ -4,7 +4,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
 
-const LAYOUT_PORT = process.env.NODE_ENV === `production` ? 40100 : 4006
+const LOCAL_ENV_PORT = 40100
+const LAYOUT_PORT = process.env.NODE_ENV === `production` ? LOCAL_ENV_PORT : 4006
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
