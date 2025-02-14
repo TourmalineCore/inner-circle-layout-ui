@@ -8,7 +8,6 @@ on:
 
 env:
   GITHUB_REGISTRY: ghcr.io
-
 jobs:
   build-image:
     name: Build and push service image  
@@ -17,6 +16,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v1
       - name: Build and push image
+        with:
+          context: .
+          file: ./Dockerfile
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
           docker build -t $GITHUB_REGISTRY/tourmalinecore/inner-circle/layout-ui:latest -t $GITHUB_REGISTRY/tourmalinecore/inner-circle/layout-ui:${{ github.sha }} .
