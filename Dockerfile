@@ -14,4 +14,4 @@ EXPOSE 80
 WORKDIR /usr/share/nginx/html
 RUN apk add --no-cache bash
 
-CMD nginx -g "daemon off;" -c "/data/conf/nginx.conf"
+CMD ["nginx -g 'daemon off;' -c /data/conf/nginx.conf"]
