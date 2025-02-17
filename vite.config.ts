@@ -36,6 +36,9 @@ export default defineConfig({
         'react/': {
           singleton: true, // Ensures that all modules starting with 'react/' also use the same instance
         },
+        '@module-federation/runtime': {
+          singleton: true,
+        },
       },
 
       /* singleton: true: This setting ensures that only a single instance of the specified module 
@@ -49,15 +52,20 @@ export default defineConfig({
     target: `chrome89`, // Setting the target browser version for the build
     rollupOptions: {
       external: [
-        /^__mf__virtual\/.*/,
         `react`,
         `react-dom`,
         `react/jsx-runtime`,
+        `@module-federation/runtime`,
+        /^__mf__virtual\//,
       ],
       output: {
         format: `es`,
         sanitizeFileName: (file) => file,
       },
+      preserveEntrySignatures: 'exports-only',
+    },
+    commonjsOptions: {
+      transformMixedEsModules: true,
     },
   },
 })
