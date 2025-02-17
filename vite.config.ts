@@ -3,6 +3,7 @@ import { federation } from '@module-federation/vite'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
+import external from 'vite-plugin-external'
 
 const LOCAL_ENV_PORT = 40100
 const LAYOUT_PORT = process.env.NODE_ENV === `production` ? LOCAL_ENV_PORT : 4006
@@ -36,9 +37,6 @@ export default defineConfig({
         'react/': {
           singleton: true, // Ensures that all modules starting with 'react/' also use the same instance
         },
-        // '@module-federation/runtime': {
-        //   singleton: true,
-        // },
       },
 
       /* singleton: true: This setting ensures that only a single instance of the specified module 
@@ -47,25 +45,20 @@ export default defineConfig({
       this setting prevents that by sharing the same instance across all applications */
     }),
     svgr(),
+    external({
+      include: [
+        /^__mf__virtual\//, // need ignore virtual modules
+      ],
+    }),
   ],
   build: {
     target: `chrome89`, // Setting the target browser version for the build
     rollupOptions: {
       external: [
         `react`,
-        // `react-dom`,
         `react/jsx-runtime`,
-        // `@module-federation/runtime`,
         /^__mf__virtual\//,
       ],
-      // output: {
-      //   format: `es`,
-      //   sanitizeFileName: (file) => file,
-      // },
-      // preserveEntrySignatures: 'exports-only',
     },
-    // commonjsOptions: {
-    //   transformMixedEsModules: true,
-    // },
   },
 })
