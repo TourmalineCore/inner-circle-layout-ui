@@ -32,7 +32,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/tourmalinecore/inner-circle/layout-ui:latest
+          tags: ghcr.io/tourmalinecore/inner-circle/layout-ui:${{ github.sha }}
   
   deploy-to-prod:
     needs: build-image
