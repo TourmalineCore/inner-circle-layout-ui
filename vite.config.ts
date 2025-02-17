@@ -3,7 +3,6 @@ import { federation } from '@module-federation/vite'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
-import external from 'vite-plugin-external'
 import path from 'path'
 
 const LOCAL_ENV_PORT = 40100
@@ -35,9 +34,11 @@ export default defineConfig({
       shared: { // Used to define dependencies that should be shared between different applications
         react: {
           singleton: true, // Ensures that only one instance of React is used
+          requiredVersion: '^18.2.0',
         },
-        'react/': {
+        'react-dom': {
           singleton: true, // Ensures that all modules starting with 'react/' also use the same instance
+          requiredVersion: '^18.2.0',
         },
       },
 
@@ -47,17 +48,13 @@ export default defineConfig({
       this setting prevents that by sharing the same instance across all applications */
     }),
     svgr(),
-    external({
-      include: [
-        /^__mf__virtual\//, // need ignore virtual modules
-      ],
-    }),
   ],
   build: {
     target: `chrome89`, // Setting the target browser version for the build
     rollupOptions: {
       external: [
         `react`,
+        'react-dom',
         `react/jsx-runtime`,
         'virtual:*',
         /^__mf__virtual\//,
