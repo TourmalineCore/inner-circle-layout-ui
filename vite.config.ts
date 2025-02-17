@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
 import external from 'vite-plugin-external'
+import path from 'path'
 
 const LOCAL_ENV_PORT = 40100
 const LAYOUT_PORT = process.env.NODE_ENV === `production` ? LOCAL_ENV_PORT : 4006
@@ -26,9 +27,10 @@ export default defineConfig({
     react(),
     federation({
       name: `inner_circle_layout_ui`, // Unique name for the application
+      filename: 'remoteEntry.js',
       manifest: true,
       exposes: {
-        './layout': './src/App.tsx', // Exposing the sidebar module from the specified path
+        './layout': path.resolve(__dirname, 'src/App.tsx'), // Exposing the sidebar module from the specified path
       },
       shared: { // Used to define dependencies that should be shared between different applications
         react: {
@@ -57,6 +59,7 @@ export default defineConfig({
       external: [
         `react`,
         `react/jsx-runtime`,
+        'virtual:*',
         /^__mf__virtual\//,
       ],
     },
