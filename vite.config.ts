@@ -15,11 +15,6 @@ export default defineConfig({
     port: LAYOUT_PORT,
   },
   base: `/`,
-  define: {
-    'import.meta.env.VITE_BASE_PATH': JSON.stringify(
-      process.env.NODE_ENV === `production` ? `/layout` : `/`,
-    ),
-  },
   css: {
     preprocessorOptions: {
       scss: {
