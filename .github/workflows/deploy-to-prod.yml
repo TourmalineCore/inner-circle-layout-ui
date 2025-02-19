@@ -33,7 +33,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ghcr.io/tourmalinecore/${{ github.event.repository.name }}
+          # TODO images: ghcr.io/tourmalinecore/${{ github.event.repository.name }}
+          images: ghcr.io/tourmalinecore/inner-circle/layout-ui
           tags: |
             # minimal (short sha)
             type=sha
