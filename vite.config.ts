@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/quotes */
 import { defineConfig } from 'vite'
-import { federation } from '@module-federation/vite'
+import federation from "@originjs/vite-plugin-federation"
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
+import rewriteAll from 'vite-plugin-rewrite-all'
 
 const LOCAL_ENV_PORT = 40100
 const LAYOUT_PORT = process.env.NODE_ENV === `production` ? LOCAL_ENV_PORT : 4006
@@ -13,7 +14,7 @@ export default defineConfig({
     origin: `http://localhost:${LAYOUT_PORT}`,
     port: LAYOUT_PORT,
   },
-  base: `/layout`,
+  base: `/`,
   css: {
     preprocessorOptions: {
       scss: {
@@ -26,22 +27,24 @@ export default defineConfig({
     svgr(),
     federation({
       name: "inner_circle_layout_ui", // Unique name for the application
-      filename: "remoteEntry.js",
-      // manifest: true,
+      filename: "layout.js",
       exposes: {
         "./layout": "./src/App.tsx", // Exposing the sidebar module from the specified path
       },
       shared: [
         "react",
+        "react-dom",
+        "react-router-dom",
       ],
-
-      /* singleton: true: This setting ensures that only a single instance of the specified module 
-      (in this case, react) is loaded in the application. 
-      If multiple applications try to load their own version of React, 
-      this setting prevents that by sharing the same instance across all applications */
     }),
+    rewriteAll(), // rewrite paths (needs for dist/assets/style-39bed72c.css)
   ],
   build: {
-    target: 'chrome89', // Setting the target browser version for the build
+    target: "esnext",
+    // sourcemap: process.env.NODE_ENV === "production" ? false : true,
+    // minify: process.env.NODE_ENV === "production" ? true : false,
+    cssCodeSplit: false,
+    outDir: 'dist',
+    assetsDir: 'assets',
   },
 })
