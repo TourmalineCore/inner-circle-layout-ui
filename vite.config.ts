@@ -14,8 +14,7 @@ export default defineConfig({
     origin: `http://localhost:${LAYOUT_PORT}`,
     port: LAYOUT_PORT,
   },
-  // base: `/`,
-  base: process.env.BASE_URL || '/',
+  base: `/layout`,
   css: {
     preprocessorOptions: {
       scss: {
