@@ -1,4 +1,4 @@
-name: Deploy to Prod
+name: Deploy layout to prod k8s
 
 on:
   push:
@@ -55,7 +55,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
 
   deploy-to-prod:
-    needs: build-image
+    needs: push_to_registry
     name: Deploy service to k8s for prod environment  
     if: github.event_name == 'push'
     runs-on: ubuntu-22.04
