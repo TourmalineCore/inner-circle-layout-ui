@@ -14,12 +14,8 @@ export default defineConfig({
     origin: `http://localhost:${LAYOUT_PORT}`,
     port: LAYOUT_PORT,
   },
-  base: `/`,
-  define: {
-    'import.meta.env.VITE_BASE_PATH': JSON.stringify(
-      process.env.NODE_ENV === `production` ? `/layout` : ``,
-    ),
-  },
+  // base: `/`,
+  base: process.env.BASE_URL || '/',
   css: {
     preprocessorOptions: {
       scss: {
