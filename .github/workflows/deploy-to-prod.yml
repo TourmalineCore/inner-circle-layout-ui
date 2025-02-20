@@ -9,6 +9,7 @@ on:
   push:
     branches:
         - master
+        - feature/*
 
 jobs:
   deploy-to-prod:
