@@ -4,11 +4,11 @@ on:
   workflow_run:
     workflows: ["Publish Docker image"] # run only after "Publish Docker image"
     types:
-      - completed # check complete "Publish Docker image" workflow
-    branches:
-      - master
-      - feature/*
+      - completed # trigger after complete "Publish Docker image" workflow
     conclusion: success  # run only if "Publish Docker image" completed successfully
+  push:
+    branches:
+        - master
 
 jobs:
   deploy-to-prod:
