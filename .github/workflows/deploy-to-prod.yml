@@ -6,15 +6,12 @@ on:
     types:
       - completed # trigger after complete "Publish Docker image" workflow
     conclusion: success  # run only if "Publish Docker image" completed successfully
-  push:
-    branches:
-        - master
-        - feature/*
 
 jobs:
   deploy-to-prod:
     name: Deploy service to k8s for prod environment  
     runs-on: ubuntu-22.04
+    if: github.ref == 'refs/heads/master' # only on master branch
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
