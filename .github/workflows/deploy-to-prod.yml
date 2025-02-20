@@ -7,6 +7,7 @@ on:
       - completed # check complete "Publish Docker image" workflow
     branches:
       - master
+      - feature/*
     conclusion: success  # run only if "Publish Docker image" completed successfully
 
 jobs:
