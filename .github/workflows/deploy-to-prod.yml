@@ -5,7 +5,7 @@ on:
     workflows: ["Publish Docker image"] # run only after "Publish Docker image"
     types:
       - completed # trigger after complete "Publish Docker image" workflow
-    conclusion: success  # run only if "Publish Docker image" completed successfully
+    # conclusion: success  # run only if "Publish Docker image" completed successfully
 
 jobs:
   deploy-to-prod:
