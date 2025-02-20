@@ -11,7 +11,8 @@ jobs:
   deploy-to-prod:
     name: Deploy service to k8s for prod environment  
     runs-on: ubuntu-22.04
-    if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/feature/') # on master branch or feature
+    # if: github.ref == 'refs/heads/master' # only on master branch
+    if: github.ref == 'refs/heads/feature/*' # on feature branch 
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
