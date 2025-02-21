@@ -19,10 +19,12 @@ export default defineConfig({
     react(),
     svgr(),
     federation({
-      name: "inner_circle_layout_ui", // Unique name for the application
+      // Unique name for the application
+      name: "inner_circle_layout_ui",
       filename: "inner_circle_layout_ui.js",
+      // Exposing the layout module from the specified path
       exposes: {
-        "./layout": "./src/App.tsx", // Exposing the sidebar module from the specified path
+        "./layout": "./src/App.tsx",
       },
       shared: [
         "react",
