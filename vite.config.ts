@@ -33,8 +33,12 @@ export default defineConfig({
       ],
     }),
   ],
+  resolve: {
+    alias: {
+      '/assets/layout': '/assets',
+    },
+  },
   build: {
-    assetsDir: 'assets',
     target: "esnext",
   },
 })
