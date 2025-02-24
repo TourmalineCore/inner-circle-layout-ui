@@ -34,7 +34,17 @@ export default defineConfig({
     }),
   ],
   build: {
-    cssCodeSplit: false,
     target: "esnext",
+    cssCodeSplit: false,
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'assets/[name][extname]'
+          }
+          return 'assets/[name]-[hash][extname]'
+        },
+      },
+    },
   },
 })
