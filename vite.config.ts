@@ -33,12 +33,8 @@ export default defineConfig({
       ],
     }),
   ],
-  resolve: {
-    alias: {
-      '/assets/layout': '/assets',
-    },
-  },
   build: {
+    cssCodeSplit: false,
     target: "esnext",
   },
 })
