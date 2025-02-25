@@ -23,22 +23,44 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
 
-      - name: Create kubeconfig file
-        run: |
-          cd $HOME
-          mkdir .kube
-          echo "${{ secrets.DEV_KUBECONFIG }}" > .kube/config
-
       - name: Deploy
-        uses: helmfile/helmfile-action@v1.9.0
+        uses: WyriHaximus/github-action-helm3@v3
         with:
-          helmfile-version: 'v0.164.0'
-          helm-version: 'v3.14.4'
-          helmfile-args: >
-            apply --namespace dev-inner-circle -f ci/helmfile.yaml 
-            --state-values-set image.tag=${{ github.sha }} 
-            --state-values-set ingress.enabled=true 
-            --state-values-set ingress.hostname=${{ secrets.DEV_HOST }} 
-            --state-values-set extraConfigMapEnvVars.API_ROOT_AUTH=${{ secrets.DEV_LINK_TO_API_ROOT_AUTH }} 
-            --state-values-set extraConfigMapEnvVars.ENV_KEY=${{ secrets.DEV_ENV }}
-          helmfile-auto-init: "false"
+          exec: |
+            RELEASE_NAME=layout-ui
+            helm repo add bitnami https://charts.bitnami.com/bitnami
+            helm upgrade --install --namespace dev-inner-circle --create-namespace --values ./ci/values.yaml \
+            --set "image.tag=${{ github.sha }}" \
+            --set "ingress.enabled=true" \
+            --set "ingress.hostname=${{ secrets.DEV_HOST }}" \
+            --set "extraConfigMapEnvVars.API_ROOT_AUTH=${{ secrets.DEV_LINK_TO_API_ROOT_AUTH }}" \
+            --set "extraConfigMapEnvVars.ENV_KEY=${{ secrets.DEV_ENV }}" \
+            "${RELEASE_NAME}" \
+            bitnami/nginx --version 15.0.2
+          kubeconfig: "${{ secrets.DEV_KUBECONFIG }}"
+
+  # deploy-to-prod:
+  #   name: Deploy service to k8s for prod environment  
+  #   needs: [push_to_registry]
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - name: Check out the repo
+  #       uses: actions/checkout@v4
+
+  #     - name: Create kubeconfig file
+  #       run: |
+  #         cd $HOME
+  #         mkdir .kube
+  #         echo "${{ secrets.DEV_KUBECONFIG }}" > .kube/config
+
+  #     - name: Deploy
+  #       uses: helmfile/helmfile-action@v1.9.0
+  #       with:
+  #         helmfile-version: 'v0.164.0'
+  #         helm-version: 'v3.14.4'
+  #         helmfile-args: >
+  #           apply --namespace dev-inner-circle -f ci/helmfile.yaml 
+  #           --state-values-set image.tag=${{ github.sha }} 
+  #           --state-values-set ingress.enabled=true 
+  #           --state-values-set ingress.hostname=${{ secrets.DEV_HOST }} 
+  #         helmfile-auto-init: "false"
