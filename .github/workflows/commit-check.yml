@@ -54,7 +54,7 @@ jobs:
           if-no-files-found: error
           path: dist
 
-  components-test:
+  component-test:
     runs-on: ubuntu-22.04 
     container: cypress/browsers:node-18.20.3-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1
     strategy:
@@ -64,8 +64,8 @@ jobs:
         containers: [1, 2, 3]
     needs: install
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout ui
+        uses: actions/checkout@v4
 
       - name: Download the dist folders
         uses: actions/download-artifact@v4
@@ -73,8 +73,8 @@ jobs:
           name: dist
           path: dist
 
-      - name: Components test
-        uses: cypress-io/github-action@v5
+      - name: Cypress run component tests
+        uses: cypress-io/github-action@v6
         with:
           component: true
           start: npm start
