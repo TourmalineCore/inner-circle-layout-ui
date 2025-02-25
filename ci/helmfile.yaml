@@ -12,3 +12,10 @@ releases:
     version: 15.3.5
     values:
       - values.yaml
+    set:
+      - name: image.tag
+        value: {{ github.sha }} 
+      - name: ingress.enabled
+        value: true 
+      - name: ingress.hostname
+        value: {{ secrets.DEV_HOST }}
