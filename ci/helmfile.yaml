@@ -13,5 +13,4 @@ releases:
     values:
       - values.yaml
       - image:
-          repository: ghcr.io/tourmalinecore/inner-circle-layout-ui
           tag: "{{ .StateValues.image.tag }}"
