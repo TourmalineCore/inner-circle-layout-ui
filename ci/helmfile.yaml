@@ -14,3 +14,5 @@ releases:
       - values.yaml
       - image:
           tag: "{{ .StateValues.image.tag }}"
+      - ingress:
+          hostname: "{{ .StateValues.ingress.hostname }}"

@@ -37,6 +37,5 @@ jobs:
           helmfile-args: >
             apply --namespace dev-inner-circle -f ci/helmfile.yaml 
             --state-values-set image.tag=sha-${{ github.sha }} 
-            --state-values-set ingress.enabled=true 
             --state-values-set ingress.hostname=${{ secrets.DEV_HOST }} 
           helmfile-auto-init: "false"
