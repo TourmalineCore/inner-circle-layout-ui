@@ -22,7 +22,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
 
-      - name: Create kubeconfig file
+      - name: Create default global .kube/config file
         run: |
           cd $HOME
           mkdir .kube
