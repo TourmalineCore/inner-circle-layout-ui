@@ -1,10 +1,10 @@
+import './styles/index.scss'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { withPrivateRoute } from './common/withPrivateRoute'
 import Template from './template/Template'
 import AccessBasedOnPemissionsState from './routes/state/AccessBasedOnPemissionsState'
 import AccessBasedOnPemissionsStateContext from './routes/state/AccessBasedOnPemissionsStateContext'
 import { ThemeProvider } from './theme/themeContext'
-import './styles/index.scss'
 import { useMemo } from 'react'
 
 // eslint-disable-next-line import/no-default-export
