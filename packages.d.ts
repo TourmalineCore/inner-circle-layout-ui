@@ -1,0 +1,3 @@
+declare module 'inner_circle_compensations_ui/CompensationsPersonalPage'
+declare module 'inner_circle_compensations_ui/AllCompensationsPage'
+declare module 'inner_circle_compensations_ui/CompensationsPage'

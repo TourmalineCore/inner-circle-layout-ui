@@ -27,6 +27,9 @@ export default defineConfig({
       exposes: {
         "./layout": "./src/App.tsx",
       },
+      remotes: {
+        inner_circle_compensations_ui: `http://localhost:${LOCAL_ENV_PORT}/compensations/assets/inner_circle_compensations_ui.js`, // for local-env
+      },
       shared: [
         "react",
         "react-dom",

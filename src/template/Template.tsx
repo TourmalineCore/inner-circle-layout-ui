@@ -11,11 +11,11 @@ import Copyright from './components/Copyright/Copyright'
 import MobileControlsPanel from './components/MobileControlsPanel/MobileControlsPanel'
 import SidebarItem from './components/Sidebar/components/SidebarItem/SidebarItem'
 import Sidebar from './components/Sidebar/Sidebar'
-// import TemplatePages from './components/TemplatePages/TemplatePages'
+import TemplatePages from './components/TemplatePages/TemplatePages'
 
 import { useSidebarRoutes } from './hooks/useSidebarRoutes'
 
-import { getSidebarRoutes } from '../routes/adminRoutes'
+import { getAdminRoutes, getSidebarRoutes } from '../routes/adminRoutes'
 import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext'
 import { parseJwt } from '../common/utils/utilsForPermissions'
 
@@ -27,6 +27,7 @@ function Template({
   const accessBasedOnPemissionsState = useContext(AccessBasedOnPemissionsStateContext)
 
   const parsedSidebarRoutes = useSidebarRoutes(getSidebarRoutes(accessBasedOnPemissionsState.accessPermissions), location)
+  const adminRoutes = getAdminRoutes(accessBasedOnPemissionsState.accessPermissions)
 
   const breadcrumbs = useBreadcrumbs(parsedSidebarRoutes as BreadcrumbsRoute<string>[], {
     excludePaths: [
@@ -90,9 +91,9 @@ function Template({
             <Breadcrumbs list={breadcrumbs} />
           </div>
 
-          {/* <div className="template__content">
+          <div className="template__content">
             <TemplatePages routes={adminRoutes} />
-          </div> */}
+          </div>
 
           <div
             className="template__panel template__panel--bottom"

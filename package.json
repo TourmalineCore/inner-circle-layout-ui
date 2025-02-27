@@ -9,6 +9,7 @@
     "build": "tsc && vite build",
     "docker:build": "docker build -t inner-circle-layout-ui .",
     "docker:run": "docker run -p 4455:80 inner-circle-layout-ui",
+    "docker:build:local-env": "docker build -t my-layout:0.0.1 .",
     "lint": "run-s lint-ts lint-eslint",
     "lint-eslint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint-ts": "tsc --noEmit",
