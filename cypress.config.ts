@@ -7,6 +7,9 @@ export default defineConfig({
       framework: `react`,
       bundler: `vite`,
     },
+    env: {
+      NODE_ENV: `test`,
+    },
     // that it quickly fails during the workshop
     defaultCommandTimeout: 500,
   },
