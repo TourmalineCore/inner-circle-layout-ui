@@ -4,7 +4,6 @@ import IconCompensationsActive from '../../assets/icons/icon-compensations-activ
 import { CompensationsPersonalPage } from 'inner_circle_compensations_ui/CompensationsPersonalPage'
 import { AllCompensationsPage } from 'inner_circle_compensations_ui/AllCompensationsPage'
 import { CompensationsPage } from './CompensationsPage'
-// import { CompensationsPage } from 'inner_circle_compensations_ui/CompensationsPage'
 
 const DEFAULT_PATH = `/compensations`
 
