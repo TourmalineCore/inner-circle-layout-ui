@@ -3,8 +3,27 @@ import { SidebarRoutesProps } from '../types'
 import { employeesSidebarRoutes } from '../pages/employees/routes'
 import { Permission } from './state/AccessBasedOnPemissionsState'
 import { IAMSidebarRoutes, roleSidebarRoutes, accountSidebarRoutes, tenantSidebarRoutes } from '../pages/iam/routes'
-import { compensationsSidebarRoutes, getRouteForCompensations } from '../pages/compensations/routes'
+import { compensationAllRoutes, compensationPersonalRoutes, compensationsSidebarRoutes, getRouteForCompensations } from '../pages/compensations/routes'
 import { documentsSidebarRoutes } from '../pages/documents/routes'
+import { BreadcrumbComponentProps } from 'use-react-router-breadcrumbs'
+
+export function getAdminRoutes(accessPermissions: Map<keyof typeof Permission, boolean>) {
+  const routes: {
+    path: string,
+    breadcrumb: string | ((props: BreadcrumbComponentProps) => string | undefined),
+    Component: () => JSX.Element,
+  }[] = []
+
+  if (accessPermissions.get(`CanRequestCompensations`)) {
+    routes.push(...compensationPersonalRoutes)
+  }
+
+  if (accessPermissions.get(`CanManageCompensations`)) {
+    routes.push(...compensationAllRoutes)
+  }
+
+  return routes
+}
 
 export function getSidebarRoutes(accessPermissions: Map<keyof typeof Permission, boolean>) {
   const routes: SidebarRoutesProps[] = []

@@ -27,7 +27,10 @@ describe(`Layout`, () => {
 })
 
 function mountComponent() {
-  const WithPrivateRoute = withPrivateRoute(Template)
+
+  const token = `eyJhbGciOiJIUzI1NiJ9.eyJjb3Jwb3JhdGVFbWFpbCI6ImV4YW1wbGVAZXhhbXBsZS5jb20iLCJwZXJtaXNzaW9ucyI6WyJWaWV3UGVyc29uYWxQcm9maWxlIiwiVmlld0NvbnRhY3RzIiwiVmlld0FjY291bnRzIiwiQ2FuUmVxdWVzdENvbXBlbnNhdGlvbnMiLCJDYW5NYW5hZ2VEb2N1bWVudHMiXSwiZXhwIjoxNzM1MTAyNjc1fQ.dqPeF94lAWePT0IizUwbuQGyN0kzu2dWVBPN_HUg7gQ`
+
+  const WithPrivateRoute = withPrivateRoute(Template, token)
 
   const routesState = new AccessBasedOnPemissionsState()
 
@@ -39,7 +42,7 @@ function mountComponent() {
         <Routes>
           <Route
             path="/*"
-            element={<WithPrivateRoute />}
+            element={<WithPrivateRoute token={token} />}
           />
         </Routes>
       </BrowserRouter>

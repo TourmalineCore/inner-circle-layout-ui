@@ -64,11 +64,8 @@
 
     &--bottom {
       display: none;
+      margin-bottom: 0;
       text-align: right;
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
     }
 
     @include media.tablet {

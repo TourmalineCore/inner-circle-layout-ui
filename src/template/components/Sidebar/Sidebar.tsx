@@ -88,7 +88,7 @@ function Sidebar({
             onClick={handleCollapseToggleClick}
           >
             <SidebarItem
-              label="Collapse menu"
+              label="menu"
               className="sidebar__collapse-button"
               icon={isCollapsed ? <IconAngleDoubleLight /> : <IconAngleDoubleRight />}
             />

@@ -12,3 +12,7 @@ releases:
     version: 15.3.5
     values:
       - values.yaml
+      - image:
+          tag: "{{ .StateValues.image.tag }}"
+      - ingress:
+          hostname: "{{ .StateValues.ingress.hostname }}"
