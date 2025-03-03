@@ -15,8 +15,8 @@
     "lint-ts": "tsc --noEmit",
     "preview": "vite preview",
     "test": "run-s cypress:run:component",
-    "cypress:open:component": "NODE_ENV=test cypress open --component --browser chrome",
-    "cypress:run:component": "NODE_ENV=test cypress run --component --browser chrome"
+    "cypress:open:component": "cypress open --component --browser chrome",
+    "cypress:run:component": "cypress run --component --browser chrome"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.7.1",

@@ -3,15 +3,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 // import reportWebVitals from './reportWebVitals';
 
-import App from './App'
+// import Layout from './Layout'
 
 async function initApp() {
-
   ReactDOM
     .createRoot(document.getElementById(`root`)!)
     .render(
       <React.StrictMode>
-        <App />
+        {/* <Layout getPageRoutes /> */}
       </React.StrictMode >,
     )
 }

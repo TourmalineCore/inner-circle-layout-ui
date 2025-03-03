@@ -14,20 +14,24 @@ import Sidebar from './components/Sidebar/Sidebar'
 import TemplatePages from './components/TemplatePages/TemplatePages'
 
 import { useSidebarRoutes } from './hooks/useSidebarRoutes'
-
-import { getAdminRoutes, getSidebarRoutes } from '../routes/adminRoutes'
+import { getSidebarRoutes } from '../routes/sidebarRoutes'
 import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext'
 import { parseJwt } from '../common/utils/utilsForPermissions'
 
 function Template({
   token,
-}: { token: string, }) {
+  getPageRoutes,
+}: {
+  token: string,
+  getPageRoutes: any,
+}) {
   const location = useLocation()
 
   const accessBasedOnPemissionsState = useContext(AccessBasedOnPemissionsStateContext)
-
   const parsedSidebarRoutes = useSidebarRoutes(getSidebarRoutes(accessBasedOnPemissionsState.accessPermissions), location)
-  const adminRoutes = getAdminRoutes(accessBasedOnPemissionsState.accessPermissions)
+
+  // get routes using getPageRoutes from remote app
+  const pageRoutes = getPageRoutes(accessBasedOnPemissionsState.accessPermissions)
 
   const breadcrumbs = useBreadcrumbs(parsedSidebarRoutes as BreadcrumbsRoute<string>[], {
     excludePaths: [
@@ -92,7 +96,7 @@ function Template({
           </div>
 
           <div className="template__content">
-            <TemplatePages routes={adminRoutes} />
+            <TemplatePages routes={pageRoutes} />
           </div>
 
           <div

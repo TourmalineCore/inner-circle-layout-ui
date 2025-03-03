@@ -8,13 +8,15 @@ import { ThemeProvider } from './theme/themeContext'
 import { useMemo } from 'react'
 
 // eslint-disable-next-line import/no-default-export
-export default function App() {
-
+export default function Layout({
+  getPageRoutes,
+}: {
+  getPageRoutes: any,
+}) {
   const accessToken = localStorage.getItem(`accessToken`)
-
   const token = JSON.parse(accessToken!).value
 
-  const WithPrivateRoute = withPrivateRoute(Template, token)
+  const WithPrivateRoute = withPrivateRoute(Template, getPageRoutes, token)
 
   const routesState = useMemo(
     () => new AccessBasedOnPemissionsState(),
@@ -31,12 +33,14 @@ export default function App() {
           <Routes>
             <Route
               path="/*"
-              element={<WithPrivateRoute token={token} />}
+              element={<WithPrivateRoute
+                getPageRoutes={getPageRoutes}
+                token={token}
+              />}
             />
           </Routes>
         </BrowserRouter>
       </AccessBasedOnPemissionsStateContext.Provider>
     </ThemeProvider>
-
   )
 }
