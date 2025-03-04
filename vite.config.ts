@@ -11,7 +11,6 @@ const LAYOUT_PORT = process.env.NODE_ENV === `production` ? LOCAL_ENV_PORT : 400
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
   server: {
-    origin: `http://localhost:${LAYOUT_PORT}`,
     port: LAYOUT_PORT,
   },
   // base: `/`, // for local docker
