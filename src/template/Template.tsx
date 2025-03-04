@@ -11,21 +11,27 @@ import Copyright from './components/Copyright/Copyright'
 import MobileControlsPanel from './components/MobileControlsPanel/MobileControlsPanel'
 import SidebarItem from './components/Sidebar/components/SidebarItem/SidebarItem'
 import Sidebar from './components/Sidebar/Sidebar'
-// import TemplatePages from './components/TemplatePages/TemplatePages'
+import TemplatePages from './components/TemplatePages/TemplatePages'
 
 import { useSidebarRoutes } from './hooks/useSidebarRoutes'
-
-import { getSidebarRoutes } from '../routes/adminRoutes'
+import { getSidebarRoutes } from '../routes/sidebarRoutes'
 import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext'
 import { parseJwt } from '../common/utils/utilsForPermissions'
-import { TODO_TOKEN } from '../common/withPrivateRoute'
 
-function Template() {
+function Template({
+  token,
+  getPageRoutes,
+}: {
+  token: string,
+  getPageRoutes: any,
+}) {
   const location = useLocation()
 
   const accessBasedOnPemissionsState = useContext(AccessBasedOnPemissionsStateContext)
-
   const parsedSidebarRoutes = useSidebarRoutes(getSidebarRoutes(accessBasedOnPemissionsState.accessPermissions), location)
+
+  // get routes using getPageRoutes from remote app
+  const pageRoutes = getPageRoutes(accessBasedOnPemissionsState.accessPermissions)
 
   const breadcrumbs = useBreadcrumbs(parsedSidebarRoutes as BreadcrumbsRoute<string>[], {
     excludePaths: [
@@ -46,12 +52,7 @@ function Template() {
     ? breadcrumbs[breadcrumbs.length - 2].key
     : null
 
-  // TODO: after connect with other services we will get token as prop
-  // const [
-  //   token,
-  // ] = TODO_TOKEN
-
-  const infoBoxDataName = parseJwt(TODO_TOKEN).corporateEmail.split(`@`)[0]
+  const infoBoxDataName = parseJwt(token).corporateEmail.split(`@`)[0]
 
   return (
     <>
@@ -94,9 +95,9 @@ function Template() {
             <Breadcrumbs list={breadcrumbs} />
           </div>
 
-          {/* <div className="template__content">
-            <TemplatePages routes={adminRoutes} />
-          </div> */}
+          <div className="template__content">
+            <TemplatePages routes={pageRoutes} />
+          </div>
 
           <div
             className="template__panel template__panel--bottom"

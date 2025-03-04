@@ -1,22 +1,17 @@
-import './styles/index.scss'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 // import reportWebVitals from './reportWebVitals';
 
-import { ThemeProvider } from './theme/themeContext'
-import App from './App'
+// import Layout from './Layout'
 
 async function initApp() {
-
   ReactDOM
     .createRoot(document.getElementById(`root`)!)
     .render(
       <React.StrictMode>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
-      </React.StrictMode>,
+        {/* <Layout getPageRoutes /> */}
+      </React.StrictMode >,
     )
 }
 
