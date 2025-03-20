@@ -13,8 +13,7 @@ export default defineConfig({
   server: {
     port: LAYOUT_PORT,
   },
-  // base: `/`, // for local docker
-  base: `/layout`, // for local-env
+  base: `/layout`,
   plugins: [
     react(),
     svgr(),
