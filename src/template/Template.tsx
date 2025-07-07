@@ -1,22 +1,21 @@
-import clsx from 'clsx'
-import { memo, useContext, useState } from 'react'
-import useBreadcrumbs, { BreadcrumbsRoute } from 'use-react-router-breadcrumbs'
 
-import { useLocation } from 'react-router-dom'
 import IconLogoutActive from '../assets/icons/icon-logout-active.svg?react'
 import IconLogout from '../assets/icons/icon-logout.svg?react'
 
+import clsx from 'clsx'
+import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext'
+import { useSidebarRoutes } from './hooks/useSidebarRoutes'
+import { getSidebarRoutes } from '../routes/sidebarRoutes'
+import { parseJwt } from '../common/utils/utilsForPermissions'
+import { useLocation } from 'react-router-dom'
+import { memo, useContext, useState } from 'react'
+import useBreadcrumbs, { BreadcrumbsRoute } from 'use-react-router-breadcrumbs'
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs'
 import Copyright from './components/Copyright/Copyright'
 import MobileControlsPanel from './components/MobileControlsPanel/MobileControlsPanel'
 import SidebarItem from './components/Sidebar/components/SidebarItem/SidebarItem'
 import Sidebar from './components/Sidebar/Sidebar'
 import TemplatePages from './components/TemplatePages/TemplatePages'
-
-import { useSidebarRoutes } from './hooks/useSidebarRoutes'
-import { getSidebarRoutes } from '../routes/sidebarRoutes'
-import AccessBasedOnPemissionsStateContext from '../routes/state/AccessBasedOnPemissionsStateContext'
-import { parseJwt } from '../common/utils/utilsForPermissions'
 
 function Template({
   token,
@@ -43,6 +42,7 @@ function Template({
     isSidebarCollapsed,
     setIsSidebarCollapsed,
   ] = useState(false)
+
   const [
     isMobileSidebarOpened,
     setIsMobileSidebarOpened,
