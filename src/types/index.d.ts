@@ -10,6 +10,6 @@ interface SidebarRoutesProps {
     isWindowRedirectNecessary?: boolean,
     path: string,
     label: string,
-    iconMini: ReactNode,
+    iconMini?: ReactNode,
   }[],
 }
