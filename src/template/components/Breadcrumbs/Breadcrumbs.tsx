@@ -18,46 +18,58 @@ function Breadcrumbs({
         left: breadcrumbsLocatedRef.current?.getBoundingClientRect().right,
       })
     }
+
+    if (!list.length) {
+      window.location.href = `/employees`
+    }
   }, [])
 
-  return !list.length
-    ? <span>Домашняя страница</span>
-    : (
-      <ul ref={breadcrumbsRef}
-        className="breadcrumbs">
-        {list.map(({
-          breadcrumb, key,
-        }, i) => (
-          <li key={key}
-            className="breadcrumbs__item">
-            {
-              i !== list.length - 1
-                ? (
-                  <>
-                    <Link className="breadcrumbs__link"
-                      to={key}>{breadcrumb}</Link>
-                    {list.length > 1 && (
-                      <span className="breadcrumbs__icon">
-                        <IconBreadcrumbs />
-                      </span>
-                    )}
-                  </>
-                )
-                : (
-                  <span
-                    ref={breadcrumbsLocatedRef}
-                    className={clsx(`breadcrumbs__breadcrumb`, {
-                      'breadcrumbs__breadcrumb--located': list.length > 1,
-                    })}
-                  >
-                    {breadcrumb}
-                  </span>
-                )
-            }
-          </li>
-        ))}
-      </ul>
-    )
+  return (
+    <ul ref={breadcrumbsRef}
+      className="breadcrumbs">
+      {
+        list
+          .map(({
+            breadcrumb,
+            key,
+          }, i,
+          ) => (
+            <li
+              key={key}
+              className="breadcrumbs__item"
+            >
+              {
+                i !== list.length - 1
+                  ? (
+                    <>
+                      <Link
+                        className="breadcrumbs__link"
+                        to={key}
+                      >
+                        {breadcrumb}
+                      </Link>
+                      {list.length > 1 && (
+                        <span className="breadcrumbs__icon">
+                          <IconBreadcrumbs />
+                        </span>
+                      )}
+                    </>
+                  )
+                  : (
+                    <span
+                      ref={breadcrumbsLocatedRef}
+                      className={clsx(`breadcrumbs__breadcrumb`, {
+                        'breadcrumbs__breadcrumb--located': list.length > 1,
+                      })}
+                    >
+                      {breadcrumb}
+                    </span>
+                  )
+              }
+            </li>
+          ))}
+    </ul>
+  )
 }
 
 // eslint-disable-next-line import/no-default-export
