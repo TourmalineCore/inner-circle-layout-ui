@@ -26,6 +26,7 @@
   "include": [
     "src",
     "global-types.d.ts",
+    "packages.d.ts",
     "**/*.d.ts",
     "cypress"
   ],
