@@ -17,7 +17,9 @@ releases:
       - ingress:
           hostname: "{{ .StateValues.ingress.hostname }}"
           annotations:
+            # configuration-snippet is used to redirect from short to original domain
             nginx.ingress.kubernetes.io/configuration-snippet: "{{ .StateValues.redirectAnnotation }}"
           extraHosts:
+            # additional host needed to set up redirect
             - name: "{{ .StateValues.ingress.extraHosts.name }}"
               path: "{{ .StateValues.ingress.extraHosts.path }}"
