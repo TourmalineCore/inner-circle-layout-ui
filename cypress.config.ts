@@ -12,6 +12,8 @@ export default defineConfig({
       API_ROOT_AUTH: process.env.API_ROOT_AUTH,
       USER_LOGIN: process.env.USER_LOGIN,
       USER_PASSWORD: process.env.USER_PASSWORD,
+      SOURCE_DOMAIN: process.env.SOURCE_DOMAIN,
+      TARGET_DOMAIN: process.env.TARGET_DOMAIN,
     },
     video: true,
     screenshotOnRunFailure: true,
