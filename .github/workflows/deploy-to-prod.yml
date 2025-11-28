@@ -34,9 +34,12 @@ jobs:
           helmfile-version: 'v0.164.0'
           helm-version: 'v3.18.0'
           helmfile-args: >
-            apply --suppress-diff --namespace dev-inner-circle -f ci/helmfile.yaml 
-            --state-values-set image.tag=sha-${{ github.sha }} 
-            --state-values-set ingress.hostname=${{ secrets.DEV_HOST }} 
+            apply --suppress-diff --namespace dev-inner-circle -f ci/helmfile.yaml
+            --state-values-set image.tag=sha-${{ github.sha }}
+            --state-values-set redirectAnnotation="if ($host = ${{ secrets.SOURCE_DOMAIN }}) { return 302 https://${{ secrets.TARGET_DOMAIN }}$request_uri; }"
+            --state-values-set ingress.hostname=${{ secrets.DEV_HOST }}
+            --state-values-set ingress.extraHosts.name=${{ secrets.SOURCE_DOMAIN }}
+            --state-values-set ingress.extraHosts.path='/'
           helmfile-auto-init: "false"
 
   e2e-test-prod:
