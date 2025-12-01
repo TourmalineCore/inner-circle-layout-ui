@@ -41,3 +41,25 @@ jobs:
             --state-values-set ingress.extraHosts.name=${{ secrets.SOURCE_DOMAIN }}
             --state-values-set ingress.extraHosts.path='/'
           helmfile-auto-init: "false"
+
+  e2e-test-prod:
+    runs-on: ubuntu-22.04
+    container: cypress/browsers:node-18.14.1-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.54-1
+    needs: [deploy-to-prod]
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: E2E test on prod
+        uses: cypress-io/github-action@v5
+        with:
+          browser: electron
+        env:
+          CYPRESS_BASE_URL: ${{ secrets.DEV_BASE_URL }}
+          API_ROOT: '/api'
+          API_ROOT_AUTH: '/api/auth'
+          USER_LOGIN: ${{ secrets.DEV_USER_LOGIN }}
+          USER_PASSWORD: ${{ secrets.DEV_USER_PASSWORD }}
+          SOURCE_DOMAIN: ${{ secrets.SOURCE_DOMAIN }}
+          TARGET_DOMAIN: ${{ secrets.TARGET_DOMAIN }}
+          TARGET_ENV: 'prod'
