@@ -7,6 +7,10 @@
       "DOM",
       "DOM.Iterable"
     ],
+    "types": [
+      "cypress",
+      "@cypress/grep"
+    ],
     "allowJs": true,
     "module": "ESNext",
     "skipLibCheck": true,

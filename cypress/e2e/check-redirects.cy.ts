@@ -7,7 +7,11 @@ describe(`Redirect tests`, () => {
   GIVEN home page
   WHEN user goes to it
   SHOULD redirect to /employee
-  `, () => {
+  `, {
+    tags: [
+      `@dev`,
+    ],
+  }, () => {
     cy.visit(`/`)
 
     cy
@@ -19,7 +23,11 @@ describe(`Redirect tests`, () => {
     GIVEN one domain
     WHEN the page is loaded
     SHOULD redirect the user to the page with different domain
-  `, () => {
+  `, {
+    tags: [
+      `@prod`,
+    ],
+  }, () => {
     const sourceDomain = Cypress.env(`SOURCE_DOMAIN`)
     const targetDomain = Cypress.env(`TARGET_DOMAIN`)
 

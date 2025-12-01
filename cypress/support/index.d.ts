@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+/// <reference types="@cypress/grep" />
 
 declare namespace Cypress {
   interface Chainable {

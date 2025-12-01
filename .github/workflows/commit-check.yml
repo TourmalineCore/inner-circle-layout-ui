@@ -138,6 +138,7 @@ jobs:
           wait-on: "http://localhost:30090"
           browser: electron
           config-file: cypress.config.local-env.ts
+          cypress-args: "--env grepTags='-@prod'"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

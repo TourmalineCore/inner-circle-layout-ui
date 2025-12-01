@@ -1,8 +1,17 @@
 import { defineConfig } from "cypress"
+import { plugin as cypressGrepPlugin } from '@cypress/grep/plugin'
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
+  env: {
+    grepFilterSpecs: true,
+    grepOmitFiltered: true,
+  },
   e2e: {
+    setupNodeEvents(on, config) {
+      cypressGrepPlugin(config)
+      return config
+    },
     viewportWidth: 1200,
     viewportHeight: 660,
     specPattern: `cypress/e2e/**/*.cy.ts`,

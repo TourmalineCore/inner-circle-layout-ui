@@ -36,6 +36,7 @@
     "use-react-router-breadcrumbs": "^4.0.1"
   },
   "devDependencies": {
+    "@cypress/grep": "^5.0.0",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
