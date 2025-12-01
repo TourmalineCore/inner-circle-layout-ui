@@ -2,7 +2,10 @@ describe(`Redirect tests`, () => {
   beforeEach(`Authorize and cleanup`, () => {
     cy.authByApi()
   })
-  const conditionalIt = Cypress.env(`DEV_FLAG`) ? it.skip : it
+
+  const conditionalIt = Cypress.env(`DEV_FLAG`)
+    ? it.skip
+    : it
 
   it(`
   GIVEN home page
