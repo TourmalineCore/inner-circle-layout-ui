@@ -61,4 +61,6 @@ jobs:
           API_ROOT_AUTH: '/api/auth'
           USER_LOGIN: ${{ secrets.DEV_USER_LOGIN }}
           USER_PASSWORD: ${{ secrets.DEV_USER_PASSWORD }}
+          SOURCE_DOMAIN: ${{ secrets.SOURCE_DOMAIN }}
+          TARGET_DOMAIN: ${{ secrets.TARGET_DOMAIN }}
           TARGET_ENV: 'prod'

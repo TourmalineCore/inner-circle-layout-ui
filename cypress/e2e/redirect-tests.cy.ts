@@ -1,6 +1,7 @@
 describe(`Redirect tests`, () => {
   beforeEach(`Authorize and check targetEnv`, () => {
     cy.authByApi()
+    console.log(`TARGET_ENV:`, Cypress.env(`TARGET_ENV`))
   })
 
   it(`
@@ -15,20 +16,17 @@ describe(`Redirect tests`, () => {
       .should(`contain`, `/employee`)
   })
 
-  Cypress.env(`TARGET_ENV`) == `prod`
+  Cypress.env(`TARGET_ENV`) === `prod`
     ? it
     : it.skip(`
       GIVEN short domain
       WHEN the page is loaded
       SHOULD redirect to the long domain
       `, () => {
-      const sourceDomain = Cypress.env(`SOURCE_DOMAIN`)
-      const targetDomain = Cypress.env(`TARGET_DOMAIN`)
-
-      cy.visit(sourceDomain)
+      cy.visit(Cypress.env(`SOURCE_DOMAIN`))
 
       cy
         .url()
-        .should(`contain`, targetDomain)
+        .should(`contain`, Cypress.env(`TARGET_DOMAIN`))
     })
 })
