@@ -15,7 +15,7 @@ describe(`Redirect tests`, () => {
       .should(`contain`, `/employee`)
   })
 
-  Cypress.env('targetEnv') == 'prod'
+  Cypress.env(`targetEnv`) == `prod`
     ? it
     : it.skip(`
       GIVEN short domain

@@ -13,13 +13,13 @@ export default defineConfig({
       USER_LOGIN: process.env.USER_LOGIN,
       USER_PASSWORD: process.env.USER_PASSWORD,
       SOURCE_DOMAIN: process.env.SOURCE_DOMAIN,
-      TARGET_DOMAIN: process.env.TARGET_DOMAIN
+      TARGET_DOMAIN: process.env.TARGET_DOMAIN,
     },
     video: true,
     screenshotOnRunFailure: true,
     setupNodeEvents(on, config) {
-      config.env.targetEnv = process.env.TARGET_ENV || 'local';
-      return config;
+      config.env.targetEnv = process.env.TARGET_ENV || `local`
+      return config
     },
   },
   component: {
