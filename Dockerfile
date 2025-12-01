@@ -1,4 +1,5 @@
-FROM node:20.11.1-alpine3.19 AS build
+FROM node:22.18-alpine3.21 AS build
+
 COPY package.json .
 COPY package-lock.json .
 RUN npm ci
