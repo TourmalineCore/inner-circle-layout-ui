@@ -68,4 +68,4 @@ jobs:
             USER_PASSWORD: ${{ secrets.DEV_USER_PASSWORD }}
             SOURCE_DOMAIN: ${{ secrets.SOURCE_DOMAIN }}
             TARGET_DOMAIN: ${{ secrets.TARGET_DOMAIN }}
-            DEV_FLAG: false,
+            DEV_FLAG: false
