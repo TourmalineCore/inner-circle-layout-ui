@@ -17,9 +17,11 @@ describe(`Redirect tests`, () => {
       .should(`contain`, `/employee`)
   })
 
-  const a = Cypress.env(`TARGET_ENV`) === `prod` ? it : it.skip
+  const customIt = Cypress.env(`TARGET_ENV`) === `prod`
+    ? it
+    : it.skip
 
-  a(`
+  customIt(`
   GIVEN short domain
   WHEN the page is loaded
   SHOULD redirect to the long domain
