@@ -3,9 +3,9 @@ describe(`Redirect tests`, () => {
     cy.authByApi()
   })
 
-  const conditionalIt = Cypress.env(`DEV_FLAG`)
-    ? it.skip
-    : it
+  // const conditionalIt = Cypress.env(`DEV_FLAG`)
+  //   ? it.skip
+  //   : it
 
   it(`
   GIVEN home page
@@ -19,7 +19,7 @@ describe(`Redirect tests`, () => {
       .should(`contain`, `/employee`)
   })
 
-  conditionalIt(`
+  it(`
     GIVEN one domain
     WHEN the page is loaded
     SHOULD redirect the user to the page with different domain
