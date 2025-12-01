@@ -14,7 +14,7 @@ export default defineConfig({
       USER_PASSWORD: process.env.USER_PASSWORD,
       SOURCE_DOMAIN: process.env.SOURCE_DOMAIN,
       TARGET_DOMAIN: process.env.TARGET_DOMAIN,
-      DEV_FLAG: true,
+      DEV_FLAG: process.env.DEV_FLAG,
     },
     video: true,
     screenshotOnRunFailure: true,
