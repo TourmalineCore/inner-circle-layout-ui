@@ -1,8 +1,6 @@
 describe(`Redirect tests`, () => {
   beforeEach(`Authorize and check targetEnv`, () => {
     cy.authByApi()
-    // eslint-disable-next-line no-console
-    console.log(`TARGET_ENV:`, Cypress.env(`TARGET_ENV`))
   })
 
   it(`
