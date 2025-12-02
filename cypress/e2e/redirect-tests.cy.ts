@@ -15,19 +15,17 @@ describe(`Redirect tests`, () => {
       .should(`contain`, `/employee`)
   })
 
-  const customIt = Cypress.env(`TARGET_ENV`) === `prod`
-    ? it
-    : it.skip
+  if (Cypress.env(`PROD_ONLY_TEST_RUN`)) {
+    it(`
+    GIVEN short domain
+    WHEN the page is loaded
+    SHOULD redirect to the long domain
+    `, () => {
+      cy.visit(Cypress.env(`SOURCE_DOMAIN`))
 
-  customIt(`
-  GIVEN short domain
-  WHEN the page is loaded
-  SHOULD redirect to the long domain
-  `, () => {
-    cy.visit(Cypress.env(`SOURCE_DOMAIN`))
-
-    cy
-      .url()
-      .should(`contain`, Cypress.env(`TARGET_DOMAIN`))
-  })
+      cy
+        .url()
+        .should(`contain`, Cypress.env(`TARGET_DOMAIN`))
+    })
+  }
 })
