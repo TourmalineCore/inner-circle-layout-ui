@@ -15,7 +15,7 @@ describe(`Redirect tests`, () => {
       .should(`contain`, `/employee`)
   })
 
-  if (Cypress.env(`PROD_ONLY_TEST_RUN`)) {
+  if (Cypress.env(`E2E_SHOULD_TEST_REDIRECT`)) {
     it(`
     GIVEN short domain
     WHEN the page is loaded
