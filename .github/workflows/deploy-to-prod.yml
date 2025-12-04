@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - feature/*
 
 jobs:
   # this is needed to wait for the new docker image to be build and published to the registry
@@ -62,4 +63,4 @@ jobs:
           USER_PASSWORD: ${{ secrets.DEV_USER_PASSWORD }}
           SOURCE_DOMAIN: ${{ secrets.SOURCE_DOMAIN }}
           TARGET_DOMAIN: ${{ secrets.TARGET_DOMAIN }}
-          E2E_SHOULD_TEST_REDIRECT: 'true'
+          E2E_RUN_ENVIRONMENT: 'prod'
