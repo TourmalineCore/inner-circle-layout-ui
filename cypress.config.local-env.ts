@@ -9,6 +9,7 @@ export default defineConfig({
       API_ROOT_AUTH: `/api/auth`,
       USER_LOGIN: `ceo@tourmalinecore.com`,
       USER_PASSWORD: `cEoPa$$wo1d`,
+      E2E_RUN_ENVIRONMENT: `local`,
     },
     video: true,
     screenshotOnRunFailure: true,
