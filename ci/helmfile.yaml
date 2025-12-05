@@ -23,3 +23,7 @@ releases:
             # additional host needed to set up redirect
             - name: "{{ .StateValues.ingress.extraHosts.name }}"
               path: "{{ .StateValues.ingress.extraHosts.path }}"
+          extraTls:
+          - hosts:
+              - "{{ .StateValues.ingress.extraTls.hosts.name }}"
+            secretName: "{{ .StateValues.ingress.extraTls.secretName }}"

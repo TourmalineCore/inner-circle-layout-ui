@@ -40,6 +40,8 @@ jobs:
             --state-values-set ingress.hostname=${{ secrets.DEV_HOST }}
             --state-values-set ingress.extraHosts.name=${{ secrets.SOURCE_DOMAIN }}
             --state-values-set ingress.extraHosts.path='/'
+            --state-values-set ingress.extraTls.hosts.name=${{ secrets.SOURCE_DOMAIN }}
+            --state-values-set ingress.extraTls.secretName=${{ secrets.SOURCE_DOMAIN }}-tls
           helmfile-auto-init: "false"
 
   e2e-test-prod:
