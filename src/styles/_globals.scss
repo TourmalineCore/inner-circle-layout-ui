@@ -61,6 +61,10 @@ body {
   body {
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
+
+    @include media.desktop {
+      overflow: auto;
+    }
   }
 }
 
