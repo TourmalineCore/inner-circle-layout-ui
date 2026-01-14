@@ -1,4 +1,4 @@
-name: Deploy to Prod
+name: Deploy to Prod and e2e test to prod
 
 on:
   push:
@@ -9,15 +9,15 @@ jobs:
   # this is needed to wait for the new docker image to be build and published to the registry
   # so that we can use the image to run ui of the needed commit related version as part of local-env
   # the idea is taken from here https://stackoverflow.com/a/71489231
-  push_to_registry:
-    uses: ./.github/workflows/docker-build-and-push.yml
+  push-to-registry:
+    uses: ./.github/workflows/.reusable-docker-build-and-push.yml
     # without this it cannot login to the registry
     secrets: inherit
 
   deploy-to-prod:
     name: Deploy service to k8s for prod environment  
-    needs: [push_to_registry]
-    runs-on: ubuntu-22.04
+    needs: [push-to-registry]
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
         run: |
           cd $HOME
           mkdir .kube
-          echo "${{ secrets.DEV_KUBECONFIG }}" > .kube/config
+          echo "${{ secrets.INNER_CIRCLE_PROD_KUBECONFIG }}" > .kube/config
 
       - name: Deploy
         uses: helmfile/helmfile-action@v1.9.0
@@ -34,10 +34,10 @@ jobs:
           helmfile-version: 'v0.164.0'
           helm-version: 'v3.18.0'
           helmfile-args: >
-            apply --suppress-diff --namespace dev-inner-circle -f ci/helmfile.yaml
+            apply --suppress-diff --namespace ${{ secrets.INNER_CIRCLE_PROD_NAMESPACE }} -f ci/helmfile.yaml 
             --state-values-set image.tag=sha-${{ github.sha }}
             --state-values-set redirectAnnotation="if ($host = ${{ secrets.SOURCE_DOMAIN }}) { return 302 https://${{ secrets.TARGET_DOMAIN }}$request_uri; }"
-            --state-values-set ingress.hostname=${{ secrets.DEV_HOST }}
+            --state-values-set ingress.hostname=${{ secrets.INNER_CIRCLE_PROD_HOSTNAME }}
             --state-values-set ingress.extraHosts.name=${{ secrets.SOURCE_DOMAIN }}
             --state-values-set ingress.extraHosts.path='/'
             --state-values-set ingress.extraTls.hosts.name=${{ secrets.SOURCE_DOMAIN }}
@@ -45,23 +45,30 @@ jobs:
           helmfile-auto-init: "false"
 
   e2e-test-prod:
-    runs-on: ubuntu-22.04
-    container: cypress/browsers:node-18.14.1-chrome-111.0.5563.146-1-ff-111.0.1-edge-111.0.1661.54-1
+    runs-on: ubuntu-24.04
+    container: cypress/browsers:node-22.18.0-chrome-138.0.7204.183-1-ff-141.0-edge-138.0.3351.121-1
     needs: [deploy-to-prod]
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
 
-      - name: E2E test on prod
-        uses: cypress-io/github-action@v5
-        with:
-          browser: electron
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Cypress E2E Tests
+        # We run the tests through the command, and not using cypress-io/github-action@v6, because this is the only way to hide the logs that might contain secrets.
+
+        # Learn more about '> /dev/null 2>&1': https://stackoverflow.com/a/42919998
+        # In essence it merges output and error streams and doesn't show errors in the terminal to avoid leakage of secrets in the pipeline
+        run: |
+          npx cypress run \
+          --e2e \
+          --browser electron > /dev/null 2>&1 || (echo "E2E PROD TESTS FAILED!" && exit 1)    
         env:
-          CYPRESS_BASE_URL: ${{ secrets.DEV_BASE_URL }}
-          API_ROOT: '/api'
-          API_ROOT_AUTH: '/api/auth'
-          USER_LOGIN: ${{ secrets.DEV_USER_LOGIN }}
-          USER_PASSWORD: ${{ secrets.DEV_USER_PASSWORD }}
+          CYPRESS_BASE_URL: ${{ secrets.INNER_CIRCLE_PROD_BASE_URL }}
+          AUTH_API_ROOT_URL: ${{ secrets.INNER_CIRCLE_PROD_AUTH_API_ROOT_URL }}
           SOURCE_DOMAIN: ${{ secrets.SOURCE_DOMAIN }}
           TARGET_DOMAIN: ${{ secrets.TARGET_DOMAIN }}
+          USER_LOGIN: ${{ secrets.INNER_CIRCLE_PROD_AUTH_FIRST_TENANT_LOGIN_WITH_ALL_PERMISSIONS  }}
+          USER_PASSWORD: ${{ secrets.INNER_CIRCLE_PROD_AUTH_FIRST_TENANT_PASSWORD_WITH_ALL_PERMISSIONS  }}
           E2E_SHOULD_TEST_REDIRECT: 'true'
