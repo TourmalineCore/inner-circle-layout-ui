@@ -32,7 +32,7 @@ jobs:
             --state-values-set ingress.extraHosts.name=${{ secrets.SOURCE_DOMAIN }} \
             --state-values-set ingress.extraHosts.path='/' \
             --state-values-set ingress.extraTls.hosts.name=${{ secrets.SOURCE_DOMAIN }} \
-            --state-values-set ingress.extraTls.secretName=${{ secrets.SOURCE_DOMAIN }}-tls > /dev/null 2>&1
+            --state-values-set ingress.extraTls.secretName=${{ secrets.SOURCE_DOMAIN }}-tls > ~/latest-layout.log 2>&1
 
   e2e-test-prod:
     runs-on: ubuntu-24.04
