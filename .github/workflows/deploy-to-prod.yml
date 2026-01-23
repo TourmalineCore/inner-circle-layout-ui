@@ -27,7 +27,7 @@ jobs:
         run: |
             helmfile cache cleanup && helmfile apply --suppress-diff --namespace ${{ secrets.INNER_CIRCLE_PROD_NAMESPACE }} -f ci/helmfile.yaml \
             --state-values-set image.tag=sha-${{ github.sha }} \
-            --state-values-set redirectAnnotation="if ($host = ${{ secrets.SOURCE_DOMAIN }}) { return 302 https://${{ secrets.TARGET_DOMAIN }}$request_uri; }" \
+            --state-values-set redirectAnnotation="if (\$host = ${{ secrets.SOURCE_DOMAIN }}) { return 302 https://${{ secrets.TARGET_DOMAIN }}$request_uri; }" \
             --state-values-set ingress.hostname=${{ secrets.DEV_HOST }} \
             --state-values-set ingress.extraHosts.name=${{ secrets.SOURCE_DOMAIN }} \
             --state-values-set ingress.extraHosts.path='/' \
