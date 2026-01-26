@@ -24,15 +24,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy
+        # We use quotes because without them some vars can break down other vars
         run: |
-            helmfile cache cleanup && helmfile apply --suppress-diff --namespace ${{ secrets.INNER_CIRCLE_PROD_NAMESPACE }} -f ci/helmfile.yaml \
-            --state-values-set image.tag=sha-${{ github.sha }} \
-            --state-values-set redirectAnnotation="if ($host = ${{ secrets.SOURCE_DOMAIN }}) { return 302 https://${{ secrets.TARGET_DOMAIN }}$request_uri; }" \
-            --state-values-set ingress.hostname=${{ secrets.INNER_CIRCLE_PROD_HOSTNAME }} \
-            --state-values-set ingress.extraHosts.name=${{ secrets.SOURCE_DOMAIN }} \
-            --state-values-set ingress.extraHosts.path='/' \
-            --state-values-set ingress.extraTls.hosts.name=${{ secrets.SOURCE_DOMAIN }} \
-            --state-values-set ingress.extraTls.secretName=${{ secrets.SOURCE_DOMAIN }}-tls > ~/latest-layout.log 2>&1
+            helmfile cache cleanup && helmfile apply --suppress-diff --namespace "${{ secrets.INNER_CIRCLE_PROD_NAMESPACE }}" -f ci/helmfile.yaml \
+            --state-values-set image.tag="sha-${{ github.sha }}" \
+            --state-values-set redirectAnnotation="if (\$host = ${{ secrets.SOURCE_DOMAIN }}) { return 302 https://${{ secrets.TARGET_DOMAIN }}$request_uri; }" \
+            --state-values-set ingress.hostname="${{ secrets.INNER_CIRCLE_PROD_HOSTNAME }}" \
+            --state-values-set ingress.extraHosts.name="${{ secrets.SOURCE_DOMAIN }}" \
+            --state-values-set ingress.extraHosts.path="/" \
+            --state-values-set ingress.extraTls.hosts.name="${{ secrets.SOURCE_DOMAIN }}" \
+            --state-values-set ingress.extraTls.secretName="${{ secrets.SOURCE_DOMAIN }}-tls" > /dev/null 2>&1
 
   e2e-test-prod:
     runs-on: ubuntu-24.04
