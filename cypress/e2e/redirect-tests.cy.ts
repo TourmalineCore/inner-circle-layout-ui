@@ -1,32 +1,25 @@
-import { itWithTags } from "../support/tags"
+import { itOnlyInProd } from "../support/tags"
 
 describe(`Redirect tests`, () => {
   beforeEach(`Authorize and check targetEnv`, () => {
     cy.authByApi()
   })
 
-  itWithTags(`
-  GIVEN home page
-  WHEN user goes to it
-  SHOULD redirect to /employee
-  `, [
-    `prod`,
-    `local`,
-  ], () => {
+  it(`
+    GIVEN home page
+    WHEN user goes to it
+    SHOULD redirect to /employee
+  `, () => {
     cy.visit(`/`)
-
-    cy
-      .url()
+    cy.url()
       .should(`contain`, `/employee`)
   })
 
-  itWithTags(`
+  itOnlyInProd(`
     GIVEN short domain
     WHEN the page is loaded
     SHOULD redirect to the long domain
-    `, [
-    `prod`,
-  ], () => {
+    `, () => {
     cy.visit(Cypress.env(`SOURCE_DOMAIN`))
 
     cy
