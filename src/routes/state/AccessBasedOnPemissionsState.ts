@@ -5,7 +5,6 @@ export enum Permission {
   ViewContacts = `ViewContacts`,
   ViewSalaryAndDocumentsData = `ViewSalaryAndDocumentsData`,
   EditFullEmployeesData = `EditFullEmployeesData`,
-  AccessAnalyticalForecastsPage = `AccessAnalyticalForecastsPage`,
   ViewAccounts = `ViewAccounts`,
   ManageAccounts = `ManageAccounts`,
   ViewRoles = `ViewRoles`,
@@ -19,6 +18,7 @@ export enum Permission {
   CanViewBooks = `CanViewBooks`,
   CanManageBooks = `CanManageBooks`,
   IsBooksHardDeleteAllowed = `IsBooksHardDeleteAllowed`,
+  CanManagePersonalTimeTracker = `CanManagePersonalTimeTracker`,
 }
 
 class AccessBasedOnPemissionsState {

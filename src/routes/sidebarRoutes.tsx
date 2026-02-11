@@ -6,6 +6,7 @@ import { IAMSidebarRoutes, roleSidebarRoutes, accountSidebarRoutes, tenantSideba
 import { compensationsSidebarRoutes, getRouteForCompensations } from '../pages/compensations/routes'
 import { documentsSidebarRoutes } from '../pages/documents/routes'
 import { booksSidebarRoutes } from '../pages/books/routes'
+import { timeSidebarRoutes } from '../pages/time/routes'
 
 export function getSidebarRoutes(accessPermissions: Map<keyof typeof Permission, boolean>) {
   const routes: SidebarRoutesProps[] = []
@@ -40,6 +41,10 @@ export function getSidebarRoutes(accessPermissions: Map<keyof typeof Permission,
 
   if (accessPermissions.get(`CanViewBooks`)) {
     routes.push(...booksSidebarRoutes)
+  }
+
+  if (accessPermissions.get(`CanManagePersonalTimeTracker`)) {
+    routes.push(...timeSidebarRoutes)
   }
 
   if (accessPermissions.get(`ViewAccounts`) && accessPermissions.get(`ViewRoles`) && accessPermissions.get(`CanManageTenants`)) {

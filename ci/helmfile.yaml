@@ -1,6 +1,6 @@
 repositories:
   - name: bitnami
-    url: https://charts.bitnami.com/bitnami
+    url: https://mirror.yandex.ru/helm/charts.bitnami.com
 
 releases:
   - name: layout-ui
@@ -23,3 +23,7 @@ releases:
             # additional host needed to set up redirect
             - name: "{{ .StateValues.ingress.extraHosts.name }}"
               path: "{{ .StateValues.ingress.extraHosts.path }}"
+          extraTls:
+          - hosts:
+              - "{{ .StateValues.ingress.extraTls.hosts.name }}"
+            secretName: "{{ .StateValues.ingress.extraTls.secretName }}"
