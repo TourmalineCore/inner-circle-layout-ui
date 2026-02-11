@@ -11,7 +11,9 @@ describe(`Redirect tests`, () => {
   SHOULD redirect to /employee
   `, () => {
     cy.visit(`/`)
-    cy.url()
+
+    cy
+      .url()
       .should(`contain`, `/employee`)
   })
 
