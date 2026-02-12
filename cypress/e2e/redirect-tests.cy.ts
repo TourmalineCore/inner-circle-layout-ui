@@ -1,3 +1,5 @@
+import { itOnlyInProd } from "../support/tags"
+
 describe(`Redirect tests`, () => {
   beforeEach(`Authorize and check targetEnv`, () => {
     cy.authByApi()
@@ -15,17 +17,15 @@ describe(`Redirect tests`, () => {
       .should(`contain`, `/employee`)
   })
 
-  if (Cypress.env(`E2E_SHOULD_TEST_REDIRECT`)) {
-    it(`
-    GIVEN short domain
-    WHEN the page is loaded
-    SHOULD redirect to the long domain
-    `, () => {
-      cy.visit(Cypress.env(`SOURCE_DOMAIN`))
+  itOnlyInProd(`
+  GIVEN short domain
+  WHEN the page is loaded
+  SHOULD redirect to the long domain
+  `, () => {
+    cy.visit(Cypress.env(`SOURCE_DOMAIN`))
 
-      cy
-        .url()
-        .should(`contain`, Cypress.env(`TARGET_DOMAIN`))
-    })
-  }
+    cy
+      .url()
+      .should(`contain`, Cypress.env(`TARGET_DOMAIN`))
+  })
 })

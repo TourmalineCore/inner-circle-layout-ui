@@ -13,7 +13,7 @@ export default defineConfig({
       USER_PASSWORD: process.env.USER_PASSWORD,
       SOURCE_DOMAIN: process.env.SOURCE_DOMAIN,
       TARGET_DOMAIN: process.env.TARGET_DOMAIN,
-      E2E_SHOULD_TEST_REDIRECT: process.env.E2E_SHOULD_TEST_REDIRECT || `false`,
+      E2E_RUN_ENVIRONMENT: process.env.E2E_RUN_ENVIRONMENT,
     },
     video: true,
     screenshotOnRunFailure: true,
