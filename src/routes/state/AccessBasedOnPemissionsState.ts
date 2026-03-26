@@ -19,6 +19,7 @@ export enum Permission {
   CanManageBooks = `CanManageBooks`,
   IsBooksHardDeleteAllowed = `IsBooksHardDeleteAllowed`,
   CanManagePersonalTimeTracker = `CanManagePersonalTimeTracker`,
+  CanViewInvoices = `CanViewInvoices`,
 }
 
 class AccessBasedOnPemissionsState {
