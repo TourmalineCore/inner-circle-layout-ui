@@ -6,7 +6,7 @@ import { IAMSidebarRoutes, roleSidebarRoutes, accountSidebarRoutes, tenantSideba
 import { compensationsSidebarRoutes, getRouteForCompensations } from '../pages/compensations/routes'
 import { documentsSidebarRoutes } from '../pages/documents/routes'
 import { booksSidebarRoutes } from '../pages/books/routes'
-import { timeSidebarRoutes } from '../pages/time/routes'
+import { getRouteForTime } from '../pages/time/routes'
 import { invoicesSidebarRoutes } from '../pages/invoices/routes'
 
 export function getSidebarRoutes(accessPermissions: Map<keyof typeof Permission, boolean>) {
@@ -44,8 +44,8 @@ export function getSidebarRoutes(accessPermissions: Map<keyof typeof Permission,
     routes.push(...booksSidebarRoutes)
   }
 
-  if (accessPermissions.get(`CanManagePersonalTimeTracker`)) {
-    routes.push(...timeSidebarRoutes)
+  if (accessPermissions.get(`CanManagePersonalTimeTracker`) || accessPermissions.get(`CanViewPersonalReport`)) {
+    routes.push(...getRouteForTime(accessPermissions))
   }
 
   if (accessPermissions.get(`CanViewInvoices`)) {

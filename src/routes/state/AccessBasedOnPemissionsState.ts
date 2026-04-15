@@ -19,6 +19,7 @@ export enum Permission {
   CanManageBooks = `CanManageBooks`,
   IsBooksHardDeleteAllowed = `IsBooksHardDeleteAllowed`,
   CanManagePersonalTimeTracker = `CanManagePersonalTimeTracker`,
+  CanViewPersonalReport = `CanViewPersonalReport`,
   CanViewInvoices = `CanViewInvoices`,
 }
 
