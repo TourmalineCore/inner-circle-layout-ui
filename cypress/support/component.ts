@@ -1,7 +1,7 @@
 import './commands'
 
 // commands
-import { mount } from 'cypress/react18'
+import { mount } from 'cypress/react'
 
 // styles
 import '../../src/styles/index.scss'
