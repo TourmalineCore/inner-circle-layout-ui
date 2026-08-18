@@ -3,6 +3,6 @@ services:
   inner-circle-layout-ui:
     build:
       context: .
-    container_name: inner-circle-layout-ui-local
+    container_name: inner-circle-layout-ui
     ports:
       - 4006:80
