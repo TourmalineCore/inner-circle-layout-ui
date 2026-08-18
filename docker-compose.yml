@@ -5,4 +5,4 @@ services:
       context: .
     container_name: inner-circle-layout-ui
     ports:
-      - 4006:80
+      - 4406:80
