@@ -1,0 +1,8 @@
+services:
+
+  inner-circle-layout-ui:
+    build:
+      context: .
+    container_name: inner-circle-layout-ui
+    ports:
+      - 4406:80
