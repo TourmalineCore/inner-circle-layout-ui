@@ -6,7 +6,7 @@ const LOCAL_DEBUG_PERMISSIONS: Array<keyof typeof Permission> = Object.keys(Perm
 
 export function logInAsLocalDebugUserIfDebugTokenEnabled() {
   if (import.meta.env.VITE_DISABLE_DEBUG_TOKEN !== `false`) {
-    return false
+    return
   }
 
   const header = btoa(JSON.stringify({
@@ -22,6 +22,4 @@ export function logInAsLocalDebugUserIfDebugTokenEnabled() {
   localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, JSON.stringify({
     value: `${header}.${payload}.`,
   }))
-
-  return true
 }
