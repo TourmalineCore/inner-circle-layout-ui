@@ -16,6 +16,18 @@ npm ci
 npm run start
 ```
 
+## Local run with module federation
+
+Plain `npm run start` doesn't serve the federated remote entry file (`assets/inner_circle_layout_ui.js`). This is a `vite-plugin-federation` limitation: it only builds that file during `vite build`, not in the dev server.
+
+To develop layout-ui alongside a host app like books-ui, run:
+
+```bash
+npm run start:federation
+```
+
+This rebuilds on every change and serves the result on port 4006. There is no hot reload, so refresh the browser manually after each change.
+
 ## Run component tests
 
 ```bash
