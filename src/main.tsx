@@ -1,23 +1,20 @@
-
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import reportWebVitals from './reportWebVitals';
 
-// import Layout from './Layout'
+import Layout from './Layout'
+import { logInAsLocalDebugUserIfDebugTokenEnabled } from './local-run/localDebugAuth'
+import { layoutRoutes } from './local-run/layoutRoutes'
 
 async function initApp() {
+  logInAsLocalDebugUserIfDebugTokenEnabled()
+
   ReactDOM
     .createRoot(document.getElementById(`root`)!)
     .render(
       <React.StrictMode>
-        {/* <Layout getPageRoutes /> */}
-      </React.StrictMode >,
+        <Layout getPageRoutes={layoutRoutes} />
+      </React.StrictMode>,
     )
 }
 
 initApp()
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
