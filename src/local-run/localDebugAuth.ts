@@ -9,11 +9,14 @@ export function logInAsLocalDebugUserIfDebugTokenEnabled() {
     return
   }
 
+  // btoa base64-encodes a string, this is how JWT segments are encoded
   const header = btoa(JSON.stringify({
     alg: `none`,
     typ: `JWT`,
   }))
 
+  // this is the payload/claims segment, the part the app actually reads
+  // corporateEmail for display, permissions for access checks
   const payload = btoa(JSON.stringify({
     corporateEmail: `ddev@example.com`,
     permissions: LOCAL_DEBUG_PERMISSIONS,
