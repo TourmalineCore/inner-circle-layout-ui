@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 
 import Layout from './Layout'
 import { logInAsLocalDebugUserIfDebugTokenEnabled } from './local-run/localDebugAuth'
-import { layoutRoutes } from './local-run/layoutRoutes'
+import { layoutRoutes } from './routes/layoutRoutes'
 
 async function initApp() {
   logInAsLocalDebugUserIfDebugTokenEnabled()
