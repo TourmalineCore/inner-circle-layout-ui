@@ -1,5 +1,4 @@
 export function layoutRoutes() {
-
   return [
     {
       path: `*`,
