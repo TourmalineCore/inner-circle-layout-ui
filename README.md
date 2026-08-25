@@ -53,5 +53,5 @@ This rebuilds on every change and serves the result on port 4500, wherever you r
 ## Run component tests
 
 ```bash
-npm run cy:component
+npm run cypress:run:component
 ```
