@@ -7,13 +7,7 @@ import svgr from 'vite-plugin-svgr'
 
 // description about how to set up host app configuration you can see in
 // https://github.com/TourmalineCore/inner-circle-books-ui/blob/master/vite.config.ts
-
-const LOCAL_ENV_PORT = 30090
-
-// LOCAL_WORKSPACE_FOLDER is set only inside the Dev Container, so it picks the port for `npm start`
-// `vite preview` (start:federation:serve) always uses 4500
-const isInsideDevContainer = !!process.env.LOCAL_WORKSPACE_FOLDER
-const LAYOUT_PORT = process.env.NODE_ENV === `production` ? LOCAL_ENV_PORT : (isInsideDevContainer ? 4500 : 5500)
+const LAYOUT_PORT = process.env.NODE_ENV === `production` ? 30090 : 4500
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
