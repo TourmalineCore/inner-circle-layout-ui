@@ -5,12 +5,9 @@ import federation from "@originjs/vite-plugin-federation"
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
 
-// description about how to set up host app configuration you can see in 
+// description about how to set up host app configuration you can see in
 // https://github.com/TourmalineCore/inner-circle-books-ui/blob/master/vite.config.ts
-
-const LOCAL_ENV_PORT = 30090
-// Set the port for the layout based on the environment
-const LAYOUT_PORT = process.env.NODE_ENV === `production` ? LOCAL_ENV_PORT : 4006
+const LAYOUT_PORT = process.env.NODE_ENV === `production` ? 30090 : 4500
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({

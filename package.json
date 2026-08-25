@@ -6,7 +6,12 @@
   "homepage": "/layout",
   "scripts": {
     "start": "vite --host",
-    "build": "tsc && vite build",
+    "start:federation": "npm-run-all -s start:federation:build:once -p start:federation:serve start:federation:build-and-watch",
+    "start:federation:build:once": "vite build --mode development",
+    "start:federation:build-and-watch": "vite build --watch --mode development",
+    "start:federation:serve": "vite preview --host --port 4500 --strictPort",
+    "build": "run-s lint-ts build:vite",
+    "build:vite": "vite build",
     "docker:build": "docker build -t inner-circle-layout-ui .",
     "docker:run": "docker run -p 4455:80 inner-circle-layout-ui",
     "docker:build:local-env": "docker build -t my-layout:0.0.1 .",
