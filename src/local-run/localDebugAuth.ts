@@ -2,7 +2,7 @@ import { Permission } from '../routes/state/AccessBasedOnPemissionsState'
 
 const ACCESS_TOKEN_STORAGE_KEY = `accessToken`
 
-const LOCAL_DEBUG_PERMISSIONS: Array<keyof typeof Permission> = Object.keys(Permission) as Array<keyof typeof Permission>
+const ALL_PERMISSIONS: Array<keyof typeof Permission> = Object.keys(Permission) as Array<keyof typeof Permission>
 
 export function logInAsLocalDebugUserIfDebugTokenEnabled() {
   if (import.meta.env.VITE_DISABLE_DEBUG_TOKEN !== `false`) {
@@ -19,7 +19,7 @@ export function logInAsLocalDebugUserIfDebugTokenEnabled() {
   // corporateEmail for display, permissions for access checks
   const payload = btoa(JSON.stringify({
     corporateEmail: `ddev@example.com`,
-    permissions: LOCAL_DEBUG_PERMISSIONS,
+    permissions: ALL_PERMISSIONS,
   }))
 
   localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, JSON.stringify({

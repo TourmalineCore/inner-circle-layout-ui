@@ -38,7 +38,7 @@ This is the Vite dev server, so it has hot reload - a change in `src` shows up i
 | :------------------------- | :-----------------------------: | :-------------------: |
 | inner-circle-layout-ui     |               4500              |        6500           |
 
-Both `npm run start` and `npm run start:federation` serve on 4500, and it is the same 4500 wherever you start them from - inside the Dev Container, in Codespaces or from a plain IDE on the host.
+Both `npm run start` and `npm run start:federation` serve at 4500, and it's the same 4500 wherever you start them—from inside the Dev Container, in Codespaces, or from a plain IDE on the host. We assume that you won't need to run an application in both the IDE and the Dev container on the same computer at the same time.
 
 The Docker Compose column is the built image served by nginx, and this is the one host apps use by default - books-ui proxies `/layout` to port 6500. In local-env the port is 30090.
 
@@ -54,7 +54,7 @@ To develop layout-ui alongside a host app like books-ui, run:
 npm run start:federation
 ```
 
-This builds the app once, keeps rebuilding it on every change and serves the result on port 4500. Module federation works, hot reload doesn't. Refresh the browser manually after each change, and give the rebuild a second to finish before you do.
+When we run serve inside we want it to show to content immediatelly that is why we run build once first and only after it we run serve and build with watch in parallel so that hot rebuild works. Hot rebuild keeps rebuilding it on every change and serves the result on port 4500. Module federation works, hot reload doesn't. Refresh the browser manually after each change, and give the rebuild a second to finish before you do.
 
 ## Run with Docker Compose
 
@@ -69,7 +69,7 @@ Use `--build` whenever the source has changed, otherwise Compose reuses the prev
 docker compose down
 ```
 
-Opening http://localhost:6500 directly gives you a broken page, and that is expected rather than a bug. The app is built with `base: /layout`, so `index.html` asks for `/layout/assets/...`, while nginx serves the files at `/assets/...`. The `/layout` prefix is meant to be stripped by whoever proxies to this container - a host app's dev server proxy locally, the ingress rewrite in a cluster. To check the container itself is alive, request an asset without the prefix:
+Opening http://localhost:6500 directly gives you a broken page, and that is expected rather than a bug. The app is built with `base: /layout`, so `index.html` asks for `/layout/assets/...`, while nginx serves the files at `/assets/...`. The `/layout` prefix is meant to be stripped by whoever proxies to this container - a host app's dev server proxy locally, the ingress rewrite in a cluster. To check the container itself is alive, request an asset without the prefix.
 
 ## Run component tests
 
