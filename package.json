@@ -9,7 +9,7 @@
     "start:federation": "npm run start:federation:build:once && run-p start:federation:build start:federation:serve",
     "start:federation:build:once": "vite build --mode development",
     "start:federation:build": "vite build --watch --mode development",
-    "start:federation:serve": "vite preview --host --port 4006 --strictPort",
+    "start:federation:serve": "vite preview --host --port 4500 --strictPort",
     "build": "tsc && vite build",
     "docker:build": "docker build -t inner-circle-layout-ui .",
     "docker:run": "docker run -p 4455:80 inner-circle-layout-ui",
