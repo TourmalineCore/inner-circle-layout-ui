@@ -77,7 +77,7 @@ function renderTimeTrackerMenuTests() {
   it(`
   GIVEN a user with one permissions
   WHEN render it
-  THEN render sidebar with not nested time tracker menu
+  THEN render sidebar without nested time tracker menu
   `, () => {
     const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lSWRlbnRpZmllciI6Im1haWxAbWFpbC5ydSIsImNvcnBvcmF0ZUVtYWlsIjoibWFpbEBtYWlsLnJ1IiwidGVuYW50SWQiOiIxIiwiYWNjb3VudElkIjoiMyIsImVtcGxveWVlSWQiOiIyIiwicGVybWlzc2lvbnMiOlsiQ2FuTWFuYWdlUGVyc29uYWxUaW1lVHJhY2tlciJdLCJleHAiOjE3ODg4NDM3NTZ9.mocked_signature_12345`
     // mock getPageRoutes function which is a prop of another app
