@@ -22,6 +22,18 @@ export function getRouteForTime(accessPermissions: Map<keyof typeof Permission, 
     })
   }
 
+  if (routes.length === 1) {
+    return [
+      {
+        isWindowRedirectNecessary: routes[0].isWindowRedirectNecessary,
+        path: routes[0].path,
+        label: routes[0].label === `Tracker` ? `Time Tracker` : routes[0].label,
+        icon: <IconTime />,
+        iconActive: <IconTime />,
+      },
+    ]
+  }
+
   return [
     {
       isWindowRedirectNecessary: true,
