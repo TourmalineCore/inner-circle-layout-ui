@@ -79,6 +79,7 @@ function SidebarItem({
           'sidebar-item--has-nested': hasNestedElements,
           'sidebar-item--active': isActive,
         })}
+        data-cy={`${hasNestedElements ? `sidebar-item-has-nested` : `sidebar-item`}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}
