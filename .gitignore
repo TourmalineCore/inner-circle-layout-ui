@@ -31,6 +31,7 @@ env-config.js
 
 # cy report
 cypress-image-diff-html-report
+!cypress.config.local-env.ts
 
 # cy comparison snapshots
 cypress-image-diff-screenshots/comparison
