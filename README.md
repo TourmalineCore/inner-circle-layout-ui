@@ -16,15 +16,19 @@ Open this repo's folder in VSCode/Codespaces, it might immediately propose you t
 
 When your Dev Container is ready, the VSCode window will be re-opened. Open a new terminal in this Dev Container which will be executing the commands under this prepared Linux container where we already have all pre-installed and pre-configured development related dependencies.
 
-## Getting Started
+### What happens when the container starts
+
+1. **`npm ci`** installs the exact dependency versions from `package-lock.json`. This runs once, when the container is created.
+2. **`npm run create-config:local`** builds `public/env-config.js` out of the keys listed in `.env-vars`, taking their values from the container environment. The app reads this file in the browser.
+
+Step 2 run on every container start, so each session begins with a fresh config. You can also run command yourself, without restarting the container.
+
+## Start the app
 
 ```bash
-# run once to install dependencies
-npm ci
-
-# to run application
 npm start
 ```
+
 Then open http://localhost:4500.
 
 This is the Vite dev server, so it has hot reload - a change in `src` shows up in the browser without a manual refresh. This is the mode to use while working on the layout markup, styles and components. Two things it does not give you:

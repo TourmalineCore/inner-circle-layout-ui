@@ -28,4 +28,4 @@ releases:
               - "{{ .StateValues.ingress.extraTls.hosts.name }}"
             secretName: "{{ .StateValues.ingress.extraTls.secretName }}"
       - extraConfigMapEnvVars:
-          VITE_ENABLE_REDIRECT_FROM_LAYOUT_TO_EMPLOYEES: "true"
+          ENABLE_REDIRECT_FROM_LAYOUT_TO_EMPLOYEES: "true"

@@ -1,35 +1,38 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-node_modules
-dist
-dist-ssr
-*.local
+# dependencies
+/node_modules
 
-# Editor directories and files
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# to be able to commit it instead of writing instructions in README
-!.env.local
-**/*/env-config.js
+# testing
+/coverage
 
 # test report artifacts
 cypress/reports/
-cypress/screenshots/
 cypress/videos/
-cypress/downloads
 
-#
+# production
+dist
+
+# misc
+.DS_Store
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.eslintcache
+
+cypress.config*
+!cypress.config.ts
+
+env-config.js
+
 .__mf__temp
+
+# cy report
+cypress-image-diff-html-report
+!cypress.config.local-env.ts
+
+# cy comparison snapshots
+cypress-image-diff-screenshots/comparison
+cypress-image-diff-screenshots/diff

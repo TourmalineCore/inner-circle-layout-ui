@@ -24,7 +24,6 @@ Cypress.Screenshot.defaults({
 export { }
 
 Cypress.Commands.add(`authByApi`, () => {
-  let accessToken: any
   const authService = createAuthService({
     authApiRoot: Cypress.env(`AUTH_API_ROOT_URL`),
     authType: `ls`,
@@ -46,9 +45,15 @@ Cypress.Commands.add(`authByApi`, () => {
     .then(({
       body: loginResponseBody,
     }) => {
-      authService.setLoggedIn(loginResponseBody)
+      const accessToken = {
+        value: loginResponseBody.accessToken.value,
+      }
 
-      accessToken = loginResponseBody.accessToken
+      authService.setLoggedIn({
+        accessToken,
+        refreshToken: loginResponseBody.refreshToken,
+      })
+
       cy
         .window()
         .then((window) => {

@@ -1,3 +1,4 @@
+import { DISABLE_DEBUG_TOKEN } from '../common/config/config'
 import { Permission } from '../routes/state/AccessBasedOnPemissionsState'
 
 const ACCESS_TOKEN_STORAGE_KEY = `accessToken`
@@ -5,7 +6,7 @@ const ACCESS_TOKEN_STORAGE_KEY = `accessToken`
 const ALL_PERMISSIONS: Array<keyof typeof Permission> = Object.keys(Permission) as Array<keyof typeof Permission>
 
 export function logInAsLocalDebugUserIfDebugTokenEnabled() {
-  if (import.meta.env.VITE_DISABLE_DEBUG_TOKEN !== `false`) {
+  if (DISABLE_DEBUG_TOKEN !== `false`) {
     return
   }
 
