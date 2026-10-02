@@ -1,4 +1,4 @@
-import { itOnlyInProd } from "../support/tags"
+import { itOnlyInLocal, itOnlyInProd } from "../support/tags"
 
 describe(`Redirect tests`, () => {
   beforeEach(`Authorize and check targetEnv`, () => {
@@ -27,5 +27,29 @@ describe(`Redirect tests`, () => {
     cy
       .url()
       .should(`contain`, Cypress.env(`TARGET_DOMAIN`))
+  })
+
+  itOnlyInProd(`
+  GIVEN layout page is opened
+  WHEN application runs in production
+  THEN user should be redirected from '/layout' to '/employees'
+  `, () => {
+    cy.visit(`/layout`)
+
+    cy
+      .location(`pathname`)
+      .should(`contain`, `/employees`)
+  })
+
+  itOnlyInLocal(`
+  GIVEN layout page is opened
+  WHEN application runs in development
+  THEN user should stay on '/layout'
+  `, () => {
+    cy.visit(`/layout`)
+
+    cy
+      .location(`pathname`)
+      .should(`contain`, `/layout`)
   })
 })
