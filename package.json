@@ -10,7 +10,6 @@
     "start:federation:build:once": "vite build --mode development",
     "start:federation:build-and-watch": "vite build --watch --mode development",
     "start:federation:serve": "vite preview --host --port 4500 --strictPort",
-    "prepare-local-run": "node --env-file=.env.local local-run/prepare-local-run",
     "create-config:local": "bash env-config-js-builder.local.sh",
     "build": "run-s lint-ts build:vite",
     "build:vite": "vite build",
