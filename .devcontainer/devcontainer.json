@@ -16,12 +16,19 @@
 		6080,
 		5901
 	],
+	// installing dependencies is a one-off, everything else has to happen on every start
+	"postCreateCommand": "npm ci",
+	// builds env-config.js and starts the services the app talks to, so a ready environment
+	// is waiting when the container opens and `npm start` only has to run the app
+	"postStartCommand": "npm run create-config:local",
 	"runArgs": [
 		"--network=host"
 	],
 	"containerEnv": {
 		// https://stackoverflow.com/questions/76555858/how-to-run-cypress-in-interactive-mode-in-a-devcontainer-on-windows-with-docker
-		"CHOKIDAR_USEPOLLING": "true"
+		"CHOKIDAR_USEPOLLING": "true",
+		"DISABLE_DEBUG_TOKEN": "false",
+		"ENABLE_REDIRECT_FROM_LAYOUT_TO_EMPLOYEES": "false"
 	},
 	"remoteEnv": {
 		// https://stackoverflow.com/q/65343518
