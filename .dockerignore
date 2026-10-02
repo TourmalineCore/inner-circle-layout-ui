@@ -32,7 +32,7 @@ public/env-config.js
 .gitattributes
 .gitignore
 .stylelintrc.json
-cypress.config.ts*
+cypress.config*
 Dockerfile
 global-types.d.ts
 LICENSE
