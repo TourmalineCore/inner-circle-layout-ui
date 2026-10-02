@@ -18,7 +18,7 @@
 	],
 	// installing dependencies is a one-off, everything else has to happen on every start
 	"postCreateCommand": "npm ci",
-	// builds env-config.js and starts the services the app talks to, so a ready environment
+	// builds env-config.js
 	// is waiting when the container opens and `npm start` only has to run the app
 	"postStartCommand": "npm run create-config:local",
 	"runArgs": [
