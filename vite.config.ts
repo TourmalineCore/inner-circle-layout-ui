@@ -52,7 +52,7 @@ export default defineConfig(({
       // This variable is used in HTML files to dynamically adjust script paths
       // Example usage in HTML: <script src="%VITE_BASE_PATH%/env-config.js"></script>
       // index.html loads env-config.js through this: /env-config.js from the dev server's public
-      // folder, /books/env-config.js from the nginx of a built image
+      // folder, /layout/env-config.js from the nginx of a built image
       'import.meta.env.VITE_BASE_PATH': JSON.stringify(process.env.NODE_ENV === `production` ? `/layout` : ``),
     },
     // Build configuration
