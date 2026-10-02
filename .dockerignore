@@ -10,8 +10,6 @@ cypress
 ci/values.yaml
 
 # also ignore all component cypress tests
-cypress-image-diff-screenshots
-cypress-image-diff-html-report
 src/**/*.cy.ts
 src/**/*.cy.tsx
 

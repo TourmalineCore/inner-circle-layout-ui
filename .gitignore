@@ -8,7 +8,6 @@
 
 # test report artifacts
 cypress/reports/
-cypress/screenshots/
 cypress/videos/
 
 # production
@@ -25,8 +24,6 @@ yarn-error.log*
 
 cypress.config*
 !cypress.config.ts
-!cypress.config.local-env.ts
-!cypress.config.mock-for-tests.ts
 
 env-config.js
 
