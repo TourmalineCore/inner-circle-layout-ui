@@ -5,11 +5,6 @@ import federation from "@originjs/vite-plugin-federation"
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
 
-// description about how to set up host app configuration you can see in
-// https://github.com/TourmalineCore/inner-circle-books-ui/blob/master/vite.config.ts
-
-const BASE_PATH = process.env.NODE_ENV === `production` ? `/layout` : ``
-
 // eslint-disable-next-line import/no-default-export
 export default defineConfig(({
   mode,
@@ -26,7 +21,7 @@ export default defineConfig(({
     // This affects how files like scripts, styles, and images are referenced in the final build.
     // Example: If an image is imported as `/assets/logo.png`, it will be resolved as `/layout/assets/logo.png`.
     // Documentation: https://vitejs.dev/config/shared-options.html#base
-    base: BASE_PATH,
+    base: `/layout`,
     plugins: [
       // Enable React support
       react(),
@@ -58,7 +53,7 @@ export default defineConfig(({
       // Example usage in HTML: <script src="%VITE_BASE_PATH%/env-config.js"></script>
       // index.html loads env-config.js through this: /env-config.js from the dev server's public
       // folder, /books/env-config.js from the nginx of a built image
-      'import.meta.env.VITE_BASE_PATH': JSON.stringify(BASE_PATH),
+      'import.meta.env.VITE_BASE_PATH': JSON.stringify(process.env.NODE_ENV === `production` ? `/layout` : ``),
     },
     // Build configuration
     build: {
